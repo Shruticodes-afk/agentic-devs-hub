@@ -42,15 +42,15 @@ export function Navbar() {
   }, []);
 
   return (
-    <nav className="sticky top-0 z-50 w-full border-b border-card-foreground/10 bg-card shadow-sm">
+    <nav className="sticky top-0 z-50 w-full border-b border-white/10 bg-[#0A0A0A]/50 backdrop-blur-md">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex h-14 items-center justify-between">
           {/* Logo — terminal style */}
           <Link href="/" className="flex items-center gap-1.5 group">
-            <span className="font-mono text-card-foreground text-lg font-bold transition-opacity group-hover:opacity-80">
+            <span className="font-mono text-white text-lg font-bold transition-opacity group-hover:opacity-80">
               {">_"}
             </span>
-            <span className="font-mono text-sm text-card-foreground/90 hidden sm:inline">
+            <span className="font-mono text-sm text-white/90 hidden sm:inline">
               agentic-devs
             </span>
           </Link>
@@ -65,13 +65,13 @@ export function Navbar() {
                   href={link.href}
                   className={`relative px-3 py-2 text-sm transition-colors duration-200 ${
                     isActive
-                      ? "text-card-foreground font-semibold"
-                      : "text-card-foreground/70 hover:text-card-foreground"
+                      ? "text-white font-semibold"
+                      : "text-white/70 hover:text-white"
                   }`}
                 >
                   {link.label}
                   {isActive && (
-                    <span className="absolute bottom-0 left-3 right-3 h-px bg-card-foreground" />
+                    <span className="absolute bottom-0 left-3 right-3 h-px bg-white" />
                   )}
                 </Link>
               );
@@ -82,10 +82,10 @@ export function Navbar() {
           <div className="hidden md:flex items-center gap-2">
             {user ? (
               <div className="flex items-center gap-3">
-                <span className="text-sm text-card-foreground/80 font-sans font-medium">
+                <span className="text-sm text-white/80 font-sans font-medium">
                   {user.user_metadata?.full_name || user.email}
                 </span>
-                <div className="w-7 h-7 rounded-full border border-card-foreground/20 bg-card-foreground/5 flex items-center justify-center text-card-foreground text-xs font-bold">
+                <div className="w-7 h-7 rounded-full border border-white/20 bg-white/5 flex items-center justify-center text-white text-xs font-bold">
                   {(
                     user.user_metadata?.full_name?.[0] ||
                     user.email?.[0] ||
@@ -99,14 +99,14 @@ export function Navbar() {
                   variant="ghost"
                   size="sm"
                   render={<Link href="/login" />}
-                  className="text-card-foreground/80 hover:text-card-foreground text-sm"
+                  className="text-white/80 hover:text-white text-sm"
                 >
                   Sign In
                 </Button>
                 <Button
                   size="sm"
                   render={<Link href="/signup" />}
-                  className="bg-primary text-primary-foreground font-semibold hover:bg-primary/90 text-sm"
+                  className="bg-white text-black font-semibold hover:bg-gray-200 text-sm rounded-full px-5"
                 >
                   Sign Up
                 </Button>
@@ -116,7 +116,7 @@ export function Navbar() {
 
           {/* Mobile menu button */}
           <button
-            className="md:hidden p-2 rounded-md text-card-foreground/80 hover:text-card-foreground hover:bg-card-foreground/5 transition-colors"
+            className="md:hidden p-2 rounded-md text-white/80 hover:text-white hover:bg-white/5 transition-colors"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle menu"
           >
@@ -148,8 +148,8 @@ export function Navbar() {
                     onClick={() => setMobileMenuOpen(false)}
                     className={`px-3 py-2.5 rounded-md text-sm transition-colors duration-200 ${
                       isActive
-                        ? "text-card-foreground font-semibold bg-card-foreground/5"
-                        : "text-card-foreground/80 hover:text-card-foreground hover:bg-card-foreground/5"
+                        ? "text-white font-semibold bg-white/5"
+                        : "text-white/80 hover:text-white hover:bg-white/5"
                     }`}
                   >
                     {link.label}
@@ -159,26 +159,26 @@ export function Navbar() {
               <div className="mt-2 pt-2 border-t border-white/[0.06] flex flex-col gap-2">
                 {user ? (
                   <div className="px-3 py-2 flex items-center gap-3">
-                    <div className="w-7 h-7 rounded-full border border-card-foreground/20 bg-card-foreground/5 flex items-center justify-center text-card-foreground text-xs font-bold">
+                    <div className="w-7 h-7 rounded-full border border-white/20 bg-white/5 flex items-center justify-center text-white text-xs font-bold">
                       {(
                         user.user_metadata?.full_name?.[0] ||
                         user.email?.[0] ||
                         "U"
                       ).toUpperCase()}
                     </div>
-                    <span className="text-sm text-card-foreground/80 font-sans font-medium">
+                    <span className="text-sm text-white/80 font-sans font-medium">
                       {user.user_metadata?.full_name || user.email}
                     </span>
                   </div>
                 ) : (
                   <>
-                    <Button variant="ghost" size="sm" render={<Link href="/login" />} className="justify-start text-card-foreground/80 hover:text-card-foreground">
+                    <Button variant="ghost" size="sm" render={<Link href="/login" />} className="justify-start text-white/80 hover:text-white">
                       Sign In
                     </Button>
                     <Button
                       size="sm"
                       render={<Link href="/signup" />}
-                      className="bg-primary text-primary-foreground font-semibold hover:bg-primary/90"
+                      className="bg-white text-black font-semibold hover:bg-gray-200 rounded-full"
                     >
                       Sign Up
                     </Button>

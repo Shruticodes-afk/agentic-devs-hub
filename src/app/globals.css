@@ -10,39 +10,39 @@
     --font-sans: var(--font-sans);
   }
   :root {
-    /* Yale Blue & Lemon Chiffon Theme */
-    --background: #0D3B66;
+    /* Premium Minimal SaaS Theme */
+    --background: #0A0A0A;
     --foreground: #FFFFFF;
-    --card: #FAF0CA;
-    --card-foreground: #0D3B66;
-    --popover: #FAF0CA;
-    --popover-foreground: #0D3B66;
-    --primary: #FAF0CA;
-    --primary-foreground: #0D3B66;
-    --secondary: #215482;
+    --card: #121212;
+    --card-foreground: #FFFFFF;
+    --popover: #121212;
+    --popover-foreground: #FFFFFF;
+    --primary: #FFFFFF;
+    --primary-foreground: #000000;
+    --secondary: #222222;
     --secondary-foreground: #FFFFFF;
-    --muted: #1a4a75;
-    --muted-foreground: #c2d6e6;
-    --accent: #FAF0CA;
-    --accent-foreground: #0D3B66;
+    --muted: #1A1A1A;
+    --muted-foreground: #A0A0A0;
+    --accent: #222222;
+    --accent-foreground: #FFFFFF;
     --destructive: #ef4444;
-    --border: #FAF0CA;
-    --input: #FAF0CA;
-    --ring: #FAF0CA;
-    --chart-1: #FAF0CA;
-    --chart-2: #0D3B66;
-    --chart-3: #c2d6e6;
-    --chart-4: #215482;
-    --chart-5: #FFFFFF;
+    --border: rgba(255, 255, 255, 0.1);
+    --input: rgba(255, 255, 255, 0.1);
+    --ring: rgba(255, 255, 255, 0.2);
+    --chart-1: #FFFFFF;
+    --chart-2: #A0A0A0;
+    --chart-3: #555555;
+    --chart-4: #222222;
+    --chart-5: #111111;
     --radius: 0.5rem;
-    --sidebar: #0D3B66;
+    --sidebar: #0A0A0A;
     --sidebar-foreground: #FFFFFF;
-    --sidebar-primary: #FAF0CA;
-    --sidebar-primary-foreground: #0D3B66;
-    --sidebar-accent: #215482;
+    --sidebar-primary: #FFFFFF;
+    --sidebar-primary-foreground: #000000;
+    --sidebar-accent: #222222;
     --sidebar-accent-foreground: #FFFFFF;
-    --sidebar-border: #FAF0CA;
-    --sidebar-ring: #FAF0CA;
+    --sidebar-border: rgba(255, 255, 255, 0.1);
+    --sidebar-ring: rgba(255, 255, 255, 0.2);
   }
   body {
     background-color: var(--background);

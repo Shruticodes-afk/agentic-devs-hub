@@ -3,126 +3,68 @@ import { Button } from "@/components/ui/button";
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen relative overflow-hidden">
-      {/* Dot grid background */}
-      <div className="absolute inset-0 dot-grid pointer-events-none" />
-      {/* Subtle primary glow — bottom-left corner */}
-      <div className="absolute -bottom-32 -left-32 w-96 h-96 bg-primary/10 rounded-full blur-[120px] pointer-events-none" />
+    <div className="min-h-screen relative overflow-hidden bg-[#0A0A0A] flex flex-col items-center justify-center pt-14">
+      {/* Soft radial glow */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+        <div className="w-[800px] h-[800px] bg-white/[0.04] rounded-full blur-[100px]" />
+      </div>
 
-      {/* Hero Section — asymmetric split */}
-      <main className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 min-h-[calc(100vh-4rem)] flex items-center">
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16 items-center w-full py-16 lg:py-0">
-          {/* Left — text content (3/5) */}
-          <div className="lg:col-span-3 space-y-8">
-            {/* Badge */}
-            <div className="inline-flex items-center gap-2 rounded-full border border-white/[0.08] bg-white/[0.03] px-4 py-1.5 text-sm text-foreground/80">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-primary" />
-              </span>
-              Building the future of developer communities
-            </div>
+      <main className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-32 flex flex-col items-center text-center">
+        
+        {/* Floating Pills */}
+        <div className="absolute top-10 left-4 md:top-24 md:left-20 hidden md:flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white shadow-lg backdrop-blur-md">
+           <span className="w-2 h-2 rounded-full bg-white/80" />
+           Local Chapters
+        </div>
+        <div className="absolute top-32 right-4 md:top-40 md:right-24 hidden md:flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white shadow-lg backdrop-blur-md">
+           <span className="w-2 h-2 rounded-full bg-white/80" />
+           AI Assistant
+        </div>
+        <div className="absolute bottom-10 left-10 md:bottom-32 md:left-32 hidden md:flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white shadow-lg backdrop-blur-md">
+           <span className="w-2 h-2 rounded-full bg-white/80" />
+           Community Events
+        </div>
+        <div className="absolute bottom-20 right-10 md:bottom-24 md:right-32 hidden md:flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white shadow-lg backdrop-blur-md">
+           <span className="w-2 h-2 rounded-full bg-white/80" />
+           Developer Network
+        </div>
 
-            {/* Heading */}
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] font-sans">
-              <span className="text-foreground">The Hub for </span>
-              <span className="text-primary">
-                Agentic Developers
-              </span>
-            </h1>
+        {/* Badge */}
+        <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-sm text-white/80 mb-8 backdrop-blur-sm">
+          <span className="relative flex h-2 w-2">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75" />
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-white" />
+          </span>
+          Building the future of developer communities
+        </div>
 
-            {/* Subtitle */}
-            <p className="text-lg text-muted-foreground max-w-xl leading-relaxed">
-              Connect with your local chapter, attend AI-powered events, and
-              build the next generation of autonomous systems — together.
-            </p>
+        {/* Heading */}
+        <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold font-sans tracking-tight leading-[1.1] text-white mb-6 max-w-5xl">
+          The Hub for <span className="text-white/80">Agentic Developers</span>
+        </h1>
+        
+        {/* Subtitle */}
+        <p className="text-lg md:text-xl text-[#A0A0A0] max-w-2xl mb-12 leading-relaxed">
+          Connect with your local chapter, attend AI-powered events, and build the next generation of autonomous systems — together.
+        </p>
 
-            {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row items-start gap-3 pt-2">
-              <Button
-                size="lg"
-                render={<Link href="/signup" />}
-                className="bg-primary text-primary-foreground font-semibold hover:bg-primary/90 transition-colors duration-200 px-8 text-base shadow-lg"
-              >
-                Get Started
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                render={<Link href="/dashboard" />}
-                className="border-white text-white hover:bg-white/[0.08] transition-colors duration-200 px-8 text-base bg-transparent"
-              >
-                Go to Dashboard
-              </Button>
-            </div>
-
-            {/* Feature pills */}
-            <div className="flex flex-wrap items-center gap-3 pt-4">
-              {[
-                { icon: "🏙️", label: "Local Chapters" },
-                { icon: "📅", label: "Community Events" },
-                { icon: "🤖", label: "AI Assistant" },
-                { icon: "👥", label: "Developer Network" },
-              ].map((feature) => (
-                <div
-                  key={feature.label}
-                  className="flex items-center gap-2 rounded-md bg-card text-card-foreground font-semibold px-4 py-2 text-sm shadow-md hover:bg-card/90 transition-colors duration-300"
-                >
-                  <span>{feature.icon}</span>
-                  <span>{feature.label}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Right — terminal block (2/5) */}
-          <div className="lg:col-span-2">
-            <div className="rounded-lg bg-card text-card-foreground overflow-hidden shadow-2xl">
-              {/* Terminal title bar */}
-              <div className="flex items-center gap-2 px-4 py-3 border-b border-card-foreground/10 bg-card">
-                <div className="flex gap-1.5">
-                  <div className="w-3 h-3 rounded-full bg-card-foreground/20" />
-                  <div className="w-3 h-3 rounded-full bg-card-foreground/20" />
-                  <div className="w-3 h-3 rounded-full bg-card-foreground/20" />
-                </div>
-                <span className="text-xs text-card-foreground/60 font-mono ml-2 font-semibold">
-                  ~/agentic-devs
-                </span>
-              </div>
-              {/* Terminal content */}
-              <div className="p-5 font-mono text-sm leading-relaxed space-y-3">
-                <div>
-                  <span className="text-card-foreground/60 font-bold">$</span>
-                  <span className="text-card-foreground font-bold"> agent init</span>
-                  <span className="text-card-foreground/80"> --collective</span>
-                </div>
-                <div className="text-card-foreground/80 text-xs leading-relaxed font-semibold">
-                  <p>✓ Connected to local chapter</p>
-                  <p>✓ Synced 42 community events</p>
-                  <p>✓ AI assistant ready</p>
-                </div>
-                <div className="pt-1 border-t border-card-foreground/10">
-                  <span className="text-card-foreground/60 font-bold">$</span>
-                  <span className="text-card-foreground font-bold"> agent status</span>
-                </div>
-                <div className="rounded-md bg-card-foreground/5 border border-card-foreground/10 px-3 py-2">
-                  <p className="text-card-foreground font-bold text-xs">
-                    ● online — 3 agents active
-                  </p>
-                  <p className="text-card-foreground/60 font-semibold text-xs mt-1">
-                    chapter: bengaluru · members: 128
-                  </p>
-                </div>
-                <div>
-                  <span className="text-card-foreground/60 font-bold">$</span>
-                  <span className="text-card-foreground animate-pulse">
-                    {" "}
-                    ▌
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
+        {/* CTA Buttons */}
+        <div className="flex flex-col sm:flex-row items-center gap-4 relative z-20">
+          <Button
+            size="lg"
+            render={<Link href="/signup" />}
+            className="rounded-full bg-white text-black hover:bg-gray-200 font-bold px-10 h-14 text-base transition-colors shadow-xl"
+          >
+            Get Started
+          </Button>
+          <Button
+            size="lg"
+            variant="outline"
+            render={<Link href="/dashboard" />}
+            className="rounded-full bg-transparent border-white/20 text-white hover:bg-white/10 font-bold px-10 h-14 text-base transition-colors"
+          >
+            Go to Dashboard
+          </Button>
         </div>
       </main>
     </div>
