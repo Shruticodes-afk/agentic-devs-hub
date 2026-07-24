@@ -54,9 +54,7 @@ function LoginForm() {
 
       <Card className="w-full max-w-sm relative z-10 border-white/[0.08] bg-card shadow-2xl shadow-black/50">
         <CardHeader className="text-center space-y-2">
-          <div className="mx-auto text-primary text-2xl font-bold mb-1">
-            {">_"}
-          </div>
+
           <CardTitle className="text-xl font-bold text-foreground">
             Welcome back
           </CardTitle>

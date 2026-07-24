@@ -59,12 +59,12 @@ export function ChatInterface() {
       {/* Header */}
       <div className="flex items-center gap-2 px-4 py-3 border-b border-white/[0.06] bg-white/[0.02]">
         <div className="flex gap-1.5">
-          <div className="w-3 h-3 rounded-full bg-white/10" />
-          <div className="w-3 h-3 rounded-full bg-white/10" />
-          <div className="w-3 h-3 rounded-full bg-white/10" />
+          <div className="w-3 h-3 rounded-full bg-[#FF5F56]" />
+          <div className="w-3 h-3 rounded-full bg-[#FFBD2E]" />
+          <div className="w-3 h-3 rounded-full bg-[#27C93F]" />
         </div>
-        <span className="text-xs text-muted-foreground ml-2">
-          ~/agentic-devs/assistant.exe
+        <span className="text-xs text-muted-foreground ml-2 font-medium">
+          AI Assistant
         </span>
       </div>
 

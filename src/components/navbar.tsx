@@ -47,8 +47,8 @@ export function Navbar() {
         <div className="flex h-14 items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center group">
-            <span className="text-white text-lg font-bold transition-opacity group-hover:opacity-80">
-              agentic-devs
+            <span className="bg-white/10 px-3 py-1.5 rounded-md border border-white/10 text-white font-extrabold tracking-tight transition-opacity group-hover:opacity-80 shadow-sm">
+              Agentic Devs
             </span>
           </Link>
 
