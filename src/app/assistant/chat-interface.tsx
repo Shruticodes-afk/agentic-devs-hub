@@ -14,11 +14,13 @@ export function ChatInterface() {
   ]);
   const [inputValue, setInputValue] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const endOfMessagesRef = useRef<HTMLDivElement>(null);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   // Auto-scroll to bottom
   useEffect(() => {
-    endOfMessagesRef.current?.scrollIntoView({ behavior: "smooth" });
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollTop = scrollContainerRef.current.scrollHeight;
+    }
   }, [messages, isLoading]);
 
   const handleSend = async (e?: React.FormEvent) => {
@@ -69,7 +71,7 @@ export function ChatInterface() {
       </div>
 
       {/* Message List */}
-      <div className="flex-1 overflow-y-auto p-4 space-y-4">
+      <div ref={scrollContainerRef} className="flex-1 overflow-y-auto p-4 space-y-4">
         {messages.map((msg, idx) => (
           <div
             key={idx}
@@ -84,8 +86,7 @@ export function ChatInterface() {
             >
               {msg.role === "model" && (
                 <div className="flex items-center gap-2 mb-1.5 opacity-60">
-                  <span className="text-primary font-bold">{">_"}</span>
-                  <span className="text-xs uppercase tracking-wider">Assistant</span>
+                  <span className="text-xs uppercase tracking-wider font-semibold">Assistant</span>
                 </div>
               )}
               {msg.text}
@@ -97,14 +98,13 @@ export function ChatInterface() {
           <div className="flex justify-start">
             <div className="max-w-[85%] rounded-lg px-4 py-3 text-sm bg-white/[0.03] border border-white/[0.06] text-muted-foreground">
               <div className="flex items-center gap-2 mb-1.5 opacity-60">
-                <span className="text-primary font-bold">{">_"}</span>
-                <span className="text-xs uppercase tracking-wider">Assistant</span>
+                <span className="text-xs uppercase tracking-wider font-semibold">Assistant</span>
               </div>
               <span className="inline-block w-2 h-4 bg-primary animate-pulse"></span>
             </div>
           </div>
         )}
-        <div ref={endOfMessagesRef} />
+
       </div>
 
       {/* Input Area */}
