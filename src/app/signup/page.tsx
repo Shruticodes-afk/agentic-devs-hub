@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import { Suspense } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useFormStatus } from "react-dom";
 import { signup } from "./actions";
 import { createClient } from "@/lib/supabase/client";
@@ -35,6 +35,19 @@ function SubmitButton() {
 function SignupForm() {
   const searchParams = useSearchParams();
   const error = searchParams.get("error");
+  const [cities, setCities] = useState<string[]>([]);
+
+  useEffect(() => {
+    async function fetchCities() {
+      const supabase = createClient();
+      const { data } = await supabase.from("chapters").select("city");
+      if (data) {
+        const uniqueCities = Array.from(new Set(data.map(d => d.city))).filter(Boolean);
+        setCities(uniqueCities);
+      }
+    }
+    fetchCities();
+  }, []);
 
   const handleGoogleSignIn = async () => {
     const supabase = createClient();
@@ -109,6 +122,25 @@ function SignupForm() {
                 minLength={6}
                 className="bg-white/[0.03] border-white/[0.08] focus:border-primary/50 focus:ring-primary/20"
               />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="city" className="text-xs uppercase tracking-wider text-muted-foreground">
+                Nearest City (Chapter)
+              </Label>
+              <select
+                id="city"
+                name="city"
+                required
+                defaultValue=""
+                className="flex h-10 w-full rounded-md border px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 bg-white/[0.03] border-white/[0.08] focus:border-primary/50 focus:ring-primary/20 text-white"
+              >
+                <option value="" disabled hidden>Select a city...</option>
+                {cities.map(city => (
+                  <option key={city} value={city} className="bg-zinc-900 text-white">
+                    {city}
+                  </option>
+                ))}
+              </select>
             </div>
             <SubmitButton />
           </form>
