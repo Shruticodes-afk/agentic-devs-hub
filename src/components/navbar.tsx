@@ -42,15 +42,15 @@ export function Navbar() {
   }, []);
 
   return (
-    <nav className="sticky top-0 z-50 w-full border-b border-white/[0.06] bg-background/80 backdrop-blur-md">
+    <nav className="sticky top-0 z-50 w-full border-b border-card-foreground/10 bg-card shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex h-14 items-center justify-between">
           {/* Logo — terminal style */}
           <Link href="/" className="flex items-center gap-1.5 group">
-            <span className="font-mono text-primary text-lg font-bold transition-opacity group-hover:opacity-80">
+            <span className="font-mono text-card-foreground text-lg font-bold transition-opacity group-hover:opacity-80">
               {">_"}
             </span>
-            <span className="font-mono text-sm text-foreground/90 hidden sm:inline">
+            <span className="font-mono text-sm text-card-foreground/90 hidden sm:inline">
               agentic-devs
             </span>
           </Link>
@@ -65,13 +65,13 @@ export function Navbar() {
                   href={link.href}
                   className={`relative px-3 py-2 text-sm transition-colors duration-200 ${
                     isActive
-                      ? "text-foreground"
-                      : "text-muted-foreground hover:text-foreground"
+                      ? "text-card-foreground font-semibold"
+                      : "text-card-foreground/70 hover:text-card-foreground"
                   }`}
                 >
                   {link.label}
                   {isActive && (
-                    <span className="absolute bottom-0 left-3 right-3 h-px bg-primary" />
+                    <span className="absolute bottom-0 left-3 right-3 h-px bg-card-foreground" />
                   )}
                 </Link>
               );
@@ -82,10 +82,10 @@ export function Navbar() {
           <div className="hidden md:flex items-center gap-2">
             {user ? (
               <div className="flex items-center gap-3">
-                <span className="text-sm text-muted-foreground font-sans">
+                <span className="text-sm text-card-foreground/80 font-sans font-medium">
                   {user.user_metadata?.full_name || user.email}
                 </span>
-                <div className="w-7 h-7 rounded-full border border-primary/40 bg-primary/10 flex items-center justify-center text-primary text-xs font-bold">
+                <div className="w-7 h-7 rounded-full border border-card-foreground/20 bg-card-foreground/5 flex items-center justify-center text-card-foreground text-xs font-bold">
                   {(
                     user.user_metadata?.full_name?.[0] ||
                     user.email?.[0] ||
@@ -99,7 +99,7 @@ export function Navbar() {
                   variant="ghost"
                   size="sm"
                   render={<Link href="/login" />}
-                  className="text-muted-foreground hover:text-foreground text-sm"
+                  className="text-card-foreground/80 hover:text-card-foreground text-sm"
                 >
                   Sign In
                 </Button>
@@ -116,7 +116,7 @@ export function Navbar() {
 
           {/* Mobile menu button */}
           <button
-            className="md:hidden p-2 rounded-md text-muted-foreground hover:text-foreground hover:bg-white/[0.04] transition-colors"
+            className="md:hidden p-2 rounded-md text-card-foreground/80 hover:text-card-foreground hover:bg-card-foreground/5 transition-colors"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle menu"
           >
@@ -148,8 +148,8 @@ export function Navbar() {
                     onClick={() => setMobileMenuOpen(false)}
                     className={`px-3 py-2.5 rounded-md text-sm transition-colors duration-200 ${
                       isActive
-                        ? "text-primary bg-primary/10"
-                        : "text-muted-foreground hover:text-foreground hover:bg-white/[0.03]"
+                        ? "text-card-foreground font-semibold bg-card-foreground/5"
+                        : "text-card-foreground/80 hover:text-card-foreground hover:bg-card-foreground/5"
                     }`}
                   >
                     {link.label}
@@ -159,20 +159,20 @@ export function Navbar() {
               <div className="mt-2 pt-2 border-t border-white/[0.06] flex flex-col gap-2">
                 {user ? (
                   <div className="px-3 py-2 flex items-center gap-3">
-                    <div className="w-7 h-7 rounded-full border border-primary/40 bg-primary/10 flex items-center justify-center text-primary text-xs font-bold">
+                    <div className="w-7 h-7 rounded-full border border-card-foreground/20 bg-card-foreground/5 flex items-center justify-center text-card-foreground text-xs font-bold">
                       {(
                         user.user_metadata?.full_name?.[0] ||
                         user.email?.[0] ||
                         "U"
                       ).toUpperCase()}
                     </div>
-                    <span className="text-sm text-muted-foreground font-sans">
+                    <span className="text-sm text-card-foreground/80 font-sans font-medium">
                       {user.user_metadata?.full_name || user.email}
                     </span>
                   </div>
                 ) : (
                   <>
-                    <Button variant="ghost" size="sm" render={<Link href="/login" />} className="justify-start text-muted-foreground">
+                    <Button variant="ghost" size="sm" render={<Link href="/login" />} className="justify-start text-card-foreground/80 hover:text-card-foreground">
                       Sign In
                     </Button>
                     <Button

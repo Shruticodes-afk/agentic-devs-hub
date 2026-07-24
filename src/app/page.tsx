@@ -15,7 +15,7 @@ export default function HomePage() {
           {/* Left — text content (3/5) */}
           <div className="lg:col-span-3 space-y-8">
             {/* Badge */}
-            <div className="inline-flex items-center gap-2 rounded-full border border-white/[0.08] bg-white/[0.03] px-4 py-1.5 text-sm text-muted-foreground">
+            <div className="inline-flex items-center gap-2 rounded-full border border-white/[0.08] bg-white/[0.03] px-4 py-1.5 text-sm text-foreground/80">
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-primary" />
@@ -42,7 +42,7 @@ export default function HomePage() {
               <Button
                 size="lg"
                 render={<Link href="/signup" />}
-                className="bg-primary text-primary-foreground font-semibold hover:bg-primary/90 transition-colors duration-200 px-8 text-base"
+                className="bg-primary text-primary-foreground font-semibold hover:bg-primary/90 transition-colors duration-200 px-8 text-base shadow-lg"
               >
                 Get Started
               </Button>
@@ -50,7 +50,7 @@ export default function HomePage() {
                 size="lg"
                 variant="outline"
                 render={<Link href="/dashboard" />}
-                className="border-white/[0.08] text-foreground hover:bg-white/[0.04] transition-colors duration-200 px-8 text-base"
+                className="border-white text-white hover:bg-white/[0.08] transition-colors duration-200 px-8 text-base bg-transparent"
               >
                 Go to Dashboard
               </Button>
@@ -66,7 +66,7 @@ export default function HomePage() {
               ].map((feature) => (
                 <div
                   key={feature.label}
-                  className="flex items-center gap-2 rounded-md border border-white/[0.06] bg-white/[0.02] px-3 py-1.5 text-sm text-muted-foreground hover:border-primary/30 transition-colors duration-300"
+                  className="flex items-center gap-2 rounded-md bg-card text-card-foreground font-semibold px-4 py-2 text-sm shadow-md hover:bg-card/90 transition-colors duration-300"
                 >
                   <span>{feature.icon}</span>
                   <span>{feature.label}</span>
@@ -77,45 +77,45 @@ export default function HomePage() {
 
           {/* Right — terminal block (2/5) */}
           <div className="lg:col-span-2">
-            <div className="rounded-lg border border-white/[0.08] bg-white/[0.02] overflow-hidden shadow-2xl shadow-black/50">
+            <div className="rounded-lg bg-card text-card-foreground overflow-hidden shadow-2xl">
               {/* Terminal title bar */}
-              <div className="flex items-center gap-2 px-4 py-3 border-b border-white/[0.06] bg-white/[0.02]">
+              <div className="flex items-center gap-2 px-4 py-3 border-b border-card-foreground/10 bg-card">
                 <div className="flex gap-1.5">
-                  <div className="w-3 h-3 rounded-full bg-white/10" />
-                  <div className="w-3 h-3 rounded-full bg-white/10" />
-                  <div className="w-3 h-3 rounded-full bg-white/10" />
+                  <div className="w-3 h-3 rounded-full bg-card-foreground/20" />
+                  <div className="w-3 h-3 rounded-full bg-card-foreground/20" />
+                  <div className="w-3 h-3 rounded-full bg-card-foreground/20" />
                 </div>
-                <span className="text-xs text-muted-foreground font-mono ml-2">
+                <span className="text-xs text-card-foreground/60 font-mono ml-2 font-semibold">
                   ~/agentic-devs
                 </span>
               </div>
               {/* Terminal content */}
               <div className="p-5 font-mono text-sm leading-relaxed space-y-3">
                 <div>
-                  <span className="text-primary">$</span>
-                  <span className="text-muted-foreground"> agent init</span>
-                  <span className="text-primary"> --collective</span>
+                  <span className="text-card-foreground/60 font-bold">$</span>
+                  <span className="text-card-foreground font-bold"> agent init</span>
+                  <span className="text-card-foreground/80"> --collective</span>
                 </div>
-                <div className="text-muted-foreground/70 text-xs leading-relaxed">
+                <div className="text-card-foreground/80 text-xs leading-relaxed font-semibold">
                   <p>✓ Connected to local chapter</p>
                   <p>✓ Synced 42 community events</p>
                   <p>✓ AI assistant ready</p>
                 </div>
-                <div className="pt-1 border-t border-white/[0.04]">
-                  <span className="text-primary">$</span>
-                  <span className="text-muted-foreground"> agent status</span>
+                <div className="pt-1 border-t border-card-foreground/10">
+                  <span className="text-card-foreground/60 font-bold">$</span>
+                  <span className="text-card-foreground font-bold"> agent status</span>
                 </div>
-                <div className="rounded-md bg-primary/10 border border-primary/20 px-3 py-2">
-                  <p className="text-primary text-xs">
+                <div className="rounded-md bg-card-foreground/5 border border-card-foreground/10 px-3 py-2">
+                  <p className="text-card-foreground font-bold text-xs">
                     ● online — 3 agents active
                   </p>
-                  <p className="text-muted-foreground/60 text-xs mt-1">
+                  <p className="text-card-foreground/60 font-semibold text-xs mt-1">
                     chapter: bengaluru · members: 128
                   </p>
                 </div>
                 <div>
-                  <span className="text-primary">$</span>
-                  <span className="text-muted-foreground animate-pulse">
+                  <span className="text-card-foreground/60 font-bold">$</span>
+                  <span className="text-card-foreground animate-pulse">
                     {" "}
                     ▌
                   </span>

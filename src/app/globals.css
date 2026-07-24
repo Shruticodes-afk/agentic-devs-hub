@@ -10,39 +10,39 @@
     --font-sans: var(--font-sans);
   }
   :root {
-    /* Professional Formal Theme */
-    --background: #12343b;
-    --foreground: #ffffff;
-    --card: #2d545e;
-    --card-foreground: #ffffff;
-    --popover: #2d545e;
-    --popover-foreground: #ffffff;
-    --primary: #4a7c82;
-    --primary-foreground: #ffffff;
-    --secondary: #2d545e;
-    --secondary-foreground: #ffffff;
-    --muted: #2d545e;
-    --muted-foreground: #a3c1c5;
-    --accent: #4a7c82;
-    --accent-foreground: #ffffff;
+    /* Yale Blue & Lemon Chiffon Theme */
+    --background: #0D3B66;
+    --foreground: #FFFFFF;
+    --card: #FAF0CA;
+    --card-foreground: #0D3B66;
+    --popover: #FAF0CA;
+    --popover-foreground: #0D3B66;
+    --primary: #FAF0CA;
+    --primary-foreground: #0D3B66;
+    --secondary: #215482;
+    --secondary-foreground: #FFFFFF;
+    --muted: #1a4a75;
+    --muted-foreground: #c2d6e6;
+    --accent: #FAF0CA;
+    --accent-foreground: #0D3B66;
     --destructive: #ef4444;
-    --border: #4a7c82;
-    --input: #4a7c82;
-    --ring: #4a7c82;
-    --chart-1: #4a7c82;
-    --chart-2: #2d545e;
-    --chart-3: #a3c1c5;
-    --chart-4: #12343b;
-    --chart-5: #ffffff;
+    --border: #FAF0CA;
+    --input: #FAF0CA;
+    --ring: #FAF0CA;
+    --chart-1: #FAF0CA;
+    --chart-2: #0D3B66;
+    --chart-3: #c2d6e6;
+    --chart-4: #215482;
+    --chart-5: #FFFFFF;
     --radius: 0.5rem;
-    --sidebar: #12343b;
-    --sidebar-foreground: #ffffff;
-    --sidebar-primary: #4a7c82;
-    --sidebar-primary-foreground: #ffffff;
-    --sidebar-accent: #2d545e;
-    --sidebar-accent-foreground: #ffffff;
-    --sidebar-border: #4a7c82;
-    --sidebar-ring: #4a7c82;
+    --sidebar: #0D3B66;
+    --sidebar-foreground: #FFFFFF;
+    --sidebar-primary: #FAF0CA;
+    --sidebar-primary-foreground: #0D3B66;
+    --sidebar-accent: #215482;
+    --sidebar-accent-foreground: #FFFFFF;
+    --sidebar-border: #FAF0CA;
+    --sidebar-ring: #FAF0CA;
   }
   body {
     background-color: var(--background);
