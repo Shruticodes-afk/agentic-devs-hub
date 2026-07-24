@@ -5,8 +5,13 @@ export default function HomePage() {
   return (
     <div className="min-h-screen relative overflow-x-hidden bg-[#0A0A0A] flex flex-col items-center justify-start pt-14">
       {/* Soft radial glow */}
-      <div className="absolute inset-0 flex items-start justify-center pt-32 pointer-events-none">
-        <div className="w-[1000px] h-[1000px] bg-white/[0.06] rounded-full blur-[120px]" />
+      <div className="absolute inset-0 flex items-start justify-center pt-10 pointer-events-none z-0">
+        <div 
+          className="w-[1200px] h-[1000px] rounded-full"
+          style={{
+            background: "radial-gradient(circle, rgba(255,255,255,0.15) 0%, rgba(200,255,230,0.08) 40%, transparent 70%)"
+          }}
+        />
       </div>
 
       <main className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full min-h-[calc(100vh-3.5rem)] py-24 flex flex-col items-center justify-center text-center">
