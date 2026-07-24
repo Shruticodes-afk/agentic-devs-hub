@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { OrbitalDiagram } from "@/components/orbital-diagram";
+import { MapPin, Calendar, Bot, Network } from "lucide-react";
 
 export default function HomePage() {
   return (
@@ -65,10 +66,10 @@ export default function HomePage() {
         {/* Feature pills */}
         <div className="flex flex-wrap items-center justify-center gap-4 pt-16 relative z-20">
           {[
-            { icon: "🏙️", label: "Local Chapters" },
-            { icon: "📅", label: "Community Events" },
-            { icon: "🤖", label: "AI Assistant" },
-            { icon: "👥", label: "Developer Network" },
+            { icon: <MapPin className="w-4 h-4" />, label: "Local Chapters" },
+            { icon: <Calendar className="w-4 h-4" />, label: "Community Events" },
+            { icon: <Bot className="w-4 h-4" />, label: "AI Assistant" },
+            { icon: <Network className="w-4 h-4" />, label: "Developer Network" },
           ].map((feature) => (
             <div
               key={feature.label}
@@ -92,12 +93,12 @@ export default function HomePage() {
               <div className="w-3 h-3 rounded-full bg-white/20" />
               <div className="w-3 h-3 rounded-full bg-white/20" />
             </div>
-            <span className="text-xs text-white/40 font-mono ml-2 font-semibold">
+            <span className="text-xs text-white/40 ml-2 font-semibold">
               ~/agentic-devs
             </span>
           </div>
           {/* Terminal content */}
-          <div className="p-6 font-mono text-sm leading-relaxed space-y-4 text-left">
+          <div className="p-6 text-sm leading-relaxed space-y-4 text-left">
             <div>
               <span className="text-white/40 font-bold">$</span>
               <span className="text-white font-bold"> agent init</span>
