@@ -1,34 +1,8 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { createClient as createSupabaseClient } from "@supabase/supabase-js";
-import { unstable_cache } from "next/cache";
 import { OrbitalDiagram } from "@/components/orbital-diagram";
 
-const getCachedTotalMembers = unstable_cache(
-  async () => {
-    const supabase = createSupabaseClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-    );
-    const { data: chapters, error } = await supabase
-      .from("chapters")
-      .select("member_count");
-
-    if (error) {
-      console.error("Error fetching chapters:", error);
-      return 128; // Fallback
-    }
-    
-    const total = chapters.reduce((acc, chapter) => acc + (chapter.member_count || 0), 0);
-    return total;
-  },
-  ["total-members-count"],
-  { revalidate: 3600 }
-);
-
-export default async function HomePage() {
-  const totalMembers = await getCachedTotalMembers();
-
+export default function HomePage() {
   return (
     <div className="min-h-screen relative overflow-x-hidden bg-[#0A0A0A] flex flex-col items-center justify-start pt-14">
       {/* Soft radial glow */}
@@ -42,8 +16,15 @@ export default async function HomePage() {
       </div>
 
       <main className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full min-h-[calc(100vh-3.5rem)] py-24 flex flex-col items-center justify-center text-center">
+        
+        {/* Orbital Diagram Background Integration */}
+        <div className="absolute inset-0 flex items-center justify-center z-0 pointer-events-none">
+           <OrbitalDiagram />
+        </div>
 
-        {/* Badge */}
+        {/* Hero Content Wrapper */}
+        <div className="relative z-10 flex flex-col items-center w-full">
+          {/* Badge */}
         <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-sm text-white/80 mb-8 backdrop-blur-sm">
           <span className="relative flex h-2 w-2">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75" />
@@ -98,12 +79,8 @@ export default async function HomePage() {
             </div>
           ))}
         </div>
+        </div>
       </main>
-
-      {/* Orbital Diagram Section */}
-      <section className="relative z-10 w-full flex justify-center pb-20 overflow-hidden">
-        <OrbitalDiagram statsLabel={`${totalMembers} Members`} />
-      </section>
     </div>
   );
 }

@@ -1,6 +1,6 @@
 import React from "react";
 
-export function OrbitalDiagram({ statsLabel }: { statsLabel: string }) {
+export function OrbitalDiagram() {
   const innerAvatars = ["🧑‍💻", "👩‍🚀", "🤖"];
   const outerAvatars = ["👨‍🔬", "👩‍💻", "🧙‍♂️", "🕵️‍♀️", "🧑‍🎓"];
 
@@ -13,7 +13,7 @@ export function OrbitalDiagram({ statsLabel }: { statsLabel: string }) {
   };
 
   return (
-    <div className="relative w-[300px] h-[300px] sm:w-[400px] sm:h-[400px] md:w-[500px] md:h-[500px] flex items-center justify-center mx-auto mt-16 mb-24 opacity-90 hover:opacity-100 transition-opacity duration-700">
+    <div className="relative w-[300px] h-[300px] sm:w-[400px] sm:h-[400px] md:w-[500px] md:h-[500px] flex items-center justify-center mx-auto opacity-80 hover:opacity-100 transition-opacity duration-700">
       
       {/* Outer Ring */}
       <div className="absolute inset-0 border border-white/10 rounded-full animate-spin-slow">
@@ -64,10 +64,10 @@ export function OrbitalDiagram({ statsLabel }: { statsLabel: string }) {
       </div>
 
       {/* Center Hub */}
-      <div className="absolute z-10 w-32 h-32 md:w-40 md:h-40 bg-[#0A0A0A] border border-white/20 rounded-full flex flex-col items-center justify-center shadow-[0_0_40px_rgba(255,255,255,0.05)]">
-        <div className="text-3xl md:text-4xl font-bold text-white tracking-tight">{statsLabel.split(' ')[0]}</div>
-        <div className="text-xs md:text-sm text-white/50 font-mono uppercase tracking-widest mt-1 text-center px-4">
-          {statsLabel.split(' ').slice(1).join(' ')}
+      <div className="absolute z-10 w-24 h-24 md:w-32 md:h-32 bg-[#0A0A0A] border border-white/20 rounded-full flex flex-col items-center justify-center shadow-[0_0_40px_rgba(255,255,255,0.05)]">
+        {/* Simple glowing icon instead of text */}
+        <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center border border-white/20">
+           <div className="w-2 h-2 rounded-full bg-white animate-pulse" />
         </div>
       </div>
     </div>
