@@ -120,7 +120,7 @@ export function ChatInterface() {
           <Button
             type="submit"
             disabled={isLoading || !inputValue.trim()}
-            className="bg-primary text-black font-semibold hover:bg-primary transition-colors duration-200 px-6"
+            className="bg-white text-black font-semibold hover:bg-white/90 transition-colors duration-200 px-6"
           >
             Send
           </Button>
