@@ -95,38 +95,41 @@ export default function HomePage() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {[
             {
-              quote: "Finding builders who actually understand agent architectures used to be impossible. The collective events changed everything for my team.",
+              quote: "Was stuck on a weird memory leak in my agent swarm for a week. Brought it to the local meetup and someone helped me fix it in 10 mins. Lifesaver.",
               name: "Priya Sharma",
               role: "Full Stack Developer",
               chapter: "Bengaluru Chapter",
               color: "bg-emerald-500/20 text-emerald-400",
               initial: "P",
+              rating: 5,
             },
             {
-              quote: "The AI assistant alone is worth joining for. It instantly connected me with local resources and helped me debug a massive LangChain integration.",
+              quote: "The discord is cool but the in-person hack nights are where the real work happens. Definitely recommend joining if you're building with LLMs.",
               name: "David Chen",
               role: "AI Engineer",
               chapter: "San Francisco Chapter",
               color: "bg-blue-500/20 text-blue-400",
               initial: "D",
+              rating: 4,
             },
             {
-              quote: "Finally, a community that actually builds instead of just talking about hype. I met my current co-founders at our local chapter meetup.",
+              quote: "Met my co-founder at the London chapter. We were both ranting about LangChain abstractions and decided to just build our own router. 10/10 community.",
               name: "Elena Rodriguez",
               role: "Systems Architect",
               chapter: "London Chapter",
               color: "bg-purple-500/20 text-purple-400",
               initial: "E",
+              rating: 5,
             },
           ].map((t, i) => (
             <div key={i} className="rounded-xl border border-white/10 bg-white/[0.02] p-8 flex flex-col justify-between">
               <div>
                 <div className="flex gap-1 mb-4">
                   {[...Array(5)].map((_, j) => (
-                    <Star key={j} className="w-4 h-4 fill-primary text-primary" />
+                    <Star key={j} className={`w-4 h-4 ${j < t.rating ? 'fill-primary text-primary' : 'text-primary/30'}`} />
                   ))}
                 </div>
-                <p className="text-white/80 leading-relaxed mb-8">&quot;{t.quote}&quot;</p>
+                <p className="text-white/80 leading-relaxed mb-8">{t.quote}</p>
               </div>
               <div className="flex items-center gap-3">
                 <div className={`w-10 h-10 rounded-full flex items-center justify-center font-bold ${t.color}`}>
