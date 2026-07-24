@@ -14,7 +14,7 @@ export default function AssistantPage() {
       <div className="relative z-10 max-w-4xl mx-auto space-y-8">
         {/* Header */}
         <div>
-          <h1 className="text-3xl font-sans font-bold text-foreground">
+          <h1 className="text-3xl font-mono font-bold text-foreground">
             <span className="text-primary">~/</span>assistant
           </h1>
           <p className="text-muted-foreground text-sm mt-2 max-w-xl">

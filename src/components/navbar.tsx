@@ -82,7 +82,7 @@ export function Navbar() {
           <div className="hidden md:flex items-center gap-2">
             {user ? (
               <div className="flex items-center gap-3">
-                <span className="text-sm text-white/80 font-sans font-medium">
+                <span className="text-sm text-white/80 font-mono font-medium">
                   {user.user_metadata?.full_name || user.email}
                 </span>
                 <div className="w-7 h-7 rounded-full border border-white/20 bg-white/5 flex items-center justify-center text-white text-xs font-bold">
@@ -166,7 +166,7 @@ export function Navbar() {
                         "U"
                       ).toUpperCase()}
                     </div>
-                    <span className="text-sm text-white/80 font-sans font-medium">
+                    <span className="text-sm text-white/80 font-mono font-medium">
                       {user.user_metadata?.full_name || user.email}
                     </span>
                   </div>
