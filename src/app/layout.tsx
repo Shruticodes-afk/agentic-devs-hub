@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/navbar";
-import { Footer } from "@/components/footer";
 import { ScrollToTop } from "@/components/scroll-to-top";
 
 const inter = Inter({
@@ -34,7 +33,6 @@ export default function RootLayout({
         <div className="flex-1 flex flex-col">
           {children}
         </div>
-        <Footer />
       </body>
     </html>
   );

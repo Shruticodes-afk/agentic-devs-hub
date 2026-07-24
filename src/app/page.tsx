@@ -187,45 +187,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Mission / Purpose Section */}
-      <section className="relative z-10 w-full bg-white/[0.01] border-y border-white/5 py-24">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8">
-          <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-6">
-            <Network className="w-6 h-6 text-primary" />
-          </div>
-          <h2 className="text-3xl md:text-4xl font-bold text-white">Why We Build Together</h2>
-          <div className="space-y-6 text-muted-foreground text-lg leading-relaxed text-left max-w-3xl mx-auto">
-            <p>
-              Developers building with AI agents often work in isolation. You&apos;re wrestling with massive LLM context windows, unpredictable agent loops, and evolving frameworks—alone in your terminal. There has been a distinct lack of community and shared resources for this specific frontier.
-            </p>
-            <p>
-              The Agentic Devs Collective changes that. We connect local chapters of agentic developers so they can collaborate, share deep technical knowledge, and build together both in person and online. We believe that peer-to-peer networking is the fastest way to accelerate AI capabilities.
-            </p>
-            <p>
-              Agentic AI development is new, fast-moving, and notoriously difficult to debug alone. To keep up, developers need more than documentation—they need a community support system.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Tech Stack Marquee Animation */}
-      <section className="relative z-10 w-full overflow-hidden py-16 bg-[#0A0A0A]">
-        <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-[#0A0A0A] to-transparent z-10"></div>
-        <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-[#0A0A0A] to-transparent z-10"></div>
-        
-        <div className="flex w-[200%] animate-marquee">
-          {/* Double array for seamless loop */}
-          {[1, 2].map((group) => (
-            <div key={group} className="flex w-1/2 items-center justify-around">
-              {["Next.js", "Supabase", "Gemini AI", "Tailwind CSS", "React", "TypeScript", "Lucide"].map((tech) => (
-                <span key={tech} className="text-xl font-bold text-white/20 whitespace-nowrap mx-8">
-                  {tech}
-                </span>
-              ))}
-            </div>
-          ))}
-        </div>
-      </section>
 
     </div>
   );
