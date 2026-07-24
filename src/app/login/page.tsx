@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { Suspense } from "react";
+import { useFormStatus } from "react-dom";
 import { login } from "./actions";
 import { createClient } from "@/lib/supabase/client";
 import { Button } from "@/components/ui/button";
@@ -17,6 +18,19 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
+
+function SubmitButton() {
+  const { pending } = useFormStatus();
+  return (
+    <Button
+      type="submit"
+      disabled={pending}
+      className="w-full bg-white text-black font-semibold hover:bg-gray-200 transition-colors duration-200 opacity-100 disabled:opacity-50"
+    >
+      {pending ? "Signing In..." : "Sign In"}
+    </Button>
+  );
+}
 
 function LoginForm() {
   const searchParams = useSearchParams();
@@ -90,12 +104,7 @@ function LoginForm() {
                 className="bg-white/[0.03] border-white/[0.08] focus:border-primary/50 focus:ring-primary/20"
               />
             </div>
-            <Button
-              type="submit"
-              className="w-full bg-primary text-black font-semibold hover:bg-primary transition-colors duration-200"
-            >
-              Sign In
-            </Button>
+            <SubmitButton />
           </form>
 
           <div className="relative">

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useTransition } from "react";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { registerForEvent } from "./actions";
@@ -71,6 +71,7 @@ function EventCard({
   const [isPending, startTransition] = useTransition();
   const [isRegistered, setIsRegistered] = useState(initiallyRegistered);
   const [localCount, setLocalCount] = useState(event.registered_count);
+  const router = useRouter();
 
   const formattedDate = new Date(event.event_date).toLocaleDateString("en-US", {
     weekday: "long",
@@ -148,7 +149,7 @@ function EventCard({
       <CardFooter className="pt-4 border-t border-white/[0.04]">
         {!isLoggedIn ? (
           <Button
-            render={<Link href="/login" />}
+            onClick={() => router.push("/login")}
             variant="outline"
             className="w-full border-white/[0.08] hover:bg-white/[0.04] text-muted-foreground"
           >
