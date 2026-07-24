@@ -91,3 +91,13 @@
   from { transform: rotate(360deg); }
   to { transform: rotate(0deg); }
 }
+
+/* Marquee Animation */
+@utility animate-marquee {
+  animation: marquee 25s linear infinite;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { OrbitalDiagram } from "@/components/orbital-diagram";
-import { MapPin, Calendar, Bot, Network } from "lucide-react";
+import { MapPin, Calendar, Bot, Network, Star } from "lucide-react";
 
 export default function HomePage() {
   return (
@@ -127,6 +127,106 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* Testimonials Section */}
+      <section className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 border-t border-white/5">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">What Developers Say</h2>
+          <p className="text-muted-foreground max-w-2xl mx-auto">
+            The Agentic Devs Collective is powering the next wave of builders across the globe.
+          </p>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {[
+            {
+              quote: "Finding builders who actually understand agent architectures used to be impossible. The collective events changed everything for my team.",
+              name: "Priya Sharma",
+              role: "Full Stack Developer",
+              chapter: "Bengaluru Chapter",
+              color: "bg-emerald-500/20 text-emerald-400",
+              initial: "P",
+            },
+            {
+              quote: "The AI assistant alone is worth joining for. It instantly connected me with local resources and helped me debug a massive LangChain integration.",
+              name: "David Chen",
+              role: "AI Engineer",
+              chapter: "San Francisco Chapter",
+              color: "bg-blue-500/20 text-blue-400",
+              initial: "D",
+            },
+            {
+              quote: "Finally, a community that actually builds instead of just talking about hype. I met my current co-founders at our local chapter meetup.",
+              name: "Elena Rodriguez",
+              role: "Systems Architect",
+              chapter: "London Chapter",
+              color: "bg-purple-500/20 text-purple-400",
+              initial: "E",
+            },
+          ].map((t, i) => (
+            <div key={i} className="rounded-xl border border-white/10 bg-white/[0.02] p-8 flex flex-col justify-between">
+              <div>
+                <div className="flex gap-1 mb-4">
+                  {[...Array(5)].map((_, j) => (
+                    <Star key={j} className="w-4 h-4 fill-primary text-primary" />
+                  ))}
+                </div>
+                <p className="text-white/80 leading-relaxed mb-8">&quot;{t.quote}&quot;</p>
+              </div>
+              <div className="flex items-center gap-3">
+                <div className={`w-10 h-10 rounded-full flex items-center justify-center font-bold ${t.color}`}>
+                  {t.initial}
+                </div>
+                <div>
+                  <p className="text-sm font-semibold text-white">{t.name}</p>
+                  <p className="text-xs text-muted-foreground">{t.role}</p>
+                  <p className="text-xs text-primary/80 mt-0.5">{t.chapter}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Mission / Purpose Section */}
+      <section className="relative z-10 w-full bg-white/[0.01] border-y border-white/5 py-24">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8">
+          <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-6">
+            <Network className="w-6 h-6 text-primary" />
+          </div>
+          <h2 className="text-3xl md:text-4xl font-bold text-white">Why We Build Together</h2>
+          <div className="space-y-6 text-muted-foreground text-lg leading-relaxed text-left max-w-3xl mx-auto">
+            <p>
+              Developers building with AI agents often work in isolation. You&apos;re wrestling with massive LLM context windows, unpredictable agent loops, and evolving frameworks—alone in your terminal. There has been a distinct lack of community and shared resources for this specific frontier.
+            </p>
+            <p>
+              The Agentic Devs Collective changes that. We connect local chapters of agentic developers so they can collaborate, share deep technical knowledge, and build together both in person and online. We believe that peer-to-peer networking is the fastest way to accelerate AI capabilities.
+            </p>
+            <p>
+              Agentic AI development is new, fast-moving, and notoriously difficult to debug alone. To keep up, developers need more than documentation—they need a community support system.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Tech Stack Marquee Animation */}
+      <section className="relative z-10 w-full overflow-hidden py-16 bg-[#0A0A0A]">
+        <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-[#0A0A0A] to-transparent z-10"></div>
+        <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-[#0A0A0A] to-transparent z-10"></div>
+        
+        <div className="flex w-[200%] animate-marquee">
+          {/* Double array for seamless loop */}
+          {[1, 2].map((group) => (
+            <div key={group} className="flex w-1/2 items-center justify-around">
+              {["Next.js", "Supabase", "Gemini AI", "Tailwind CSS", "React", "TypeScript", "Lucide"].map((tech) => (
+                <span key={tech} className="text-xl font-bold text-white/20 whitespace-nowrap mx-8">
+                  {tech}
+                </span>
+              ))}
+            </div>
+          ))}
+        </div>
+      </section>
+
     </div>
   );
 }
