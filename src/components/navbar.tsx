@@ -45,12 +45,9 @@ export function Navbar() {
     <nav className="sticky top-0 z-50 w-full border-b border-white/10 bg-[#0A0A0A]/50 backdrop-blur-md">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex h-14 items-center justify-between">
-          {/* Logo — terminal style */}
-          <Link href="/" className="flex items-center gap-1.5 group">
+          {/* Logo */}
+          <Link href="/" className="flex items-center group">
             <span className="font-mono text-white text-lg font-bold transition-opacity group-hover:opacity-80">
-              {">_"}
-            </span>
-            <span className="font-mono text-sm text-white/90 hidden sm:inline">
               agentic-devs
             </span>
           </Link>
