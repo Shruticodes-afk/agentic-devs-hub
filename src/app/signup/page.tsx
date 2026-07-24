@@ -39,7 +39,7 @@ function SignupForm() {
 
       <Card className="w-full max-w-sm relative z-10 border-white/[0.08] bg-card shadow-2xl shadow-black/50">
         <CardHeader className="text-center space-y-2">
-          <div className="mx-auto font-mono text-emerald-400 text-2xl font-bold mb-1">
+          <div className="mx-auto text-primary text-2xl font-bold mb-1">
             {">_"}
           </div>
           <CardTitle className="text-xl font-mono font-bold text-foreground">
@@ -68,7 +68,7 @@ function SignupForm() {
                 type="text"
                 placeholder="Jane Doe"
                 required
-                className="bg-white/[0.03] border-white/[0.08] focus:border-emerald-500/50 focus:ring-emerald-500/20"
+                className="bg-white/[0.03] border-white/[0.08] focus:border-primary/50 focus:ring-primary/20"
               />
             </div>
             <div className="space-y-2">
@@ -81,7 +81,7 @@ function SignupForm() {
                 type="email"
                 placeholder="you@example.com"
                 required
-                className="bg-white/[0.03] border-white/[0.08] focus:border-emerald-500/50 focus:ring-emerald-500/20"
+                className="bg-white/[0.03] border-white/[0.08] focus:border-primary/50 focus:ring-primary/20"
               />
             </div>
             <div className="space-y-2">
@@ -95,12 +95,12 @@ function SignupForm() {
                 placeholder="••••••••"
                 required
                 minLength={6}
-                className="bg-white/[0.03] border-white/[0.08] focus:border-emerald-500/50 focus:ring-emerald-500/20"
+                className="bg-white/[0.03] border-white/[0.08] focus:border-primary/50 focus:ring-primary/20"
               />
             </div>
             <Button
               type="submit"
-              className="w-full bg-emerald-500 text-black font-semibold hover:bg-emerald-400 transition-colors duration-200"
+              className="w-full bg-primary text-black font-semibold hover:bg-primary transition-colors duration-200"
             >
               Create Account
             </Button>
@@ -134,7 +134,7 @@ function SignupForm() {
             Already have an account?{" "}
             <Link
               href="/login"
-              className="text-emerald-400 hover:text-emerald-300 font-medium transition-colors"
+              className="text-primary hover:text-primary/90 font-medium transition-colors"
             >
               Sign In
             </Link>

@@ -72,7 +72,7 @@ export default async function DashboardPage() {
         </div>
 
         {/* Profile Card */}
-        <Card className="border-white/[0.08] bg-card hover:border-emerald-500/20 transition-colors duration-300">
+        <Card className="border-white/[0.08] bg-card hover:border-primary/20 transition-colors duration-300">
           <CardHeader>
             <CardTitle className="text-base font-mono">Your Profile</CardTitle>
             <CardDescription className="text-sm">
@@ -153,11 +153,11 @@ export default async function DashboardPage() {
           ].map((stat) => (
             <Card
               key={stat.label}
-              className="border-white/[0.08] bg-card hover:border-emerald-500/20 transition-colors duration-300"
+              className="border-white/[0.08] bg-card hover:border-primary/20 transition-colors duration-300"
             >
               <CardContent className="p-5">
                 <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-md bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400">
+                  <div className="w-8 h-8 rounded-md bg-primary/10 border border-primary/20 flex items-center justify-center text-primary">
                     {stat.icon}
                   </div>
                   <div>

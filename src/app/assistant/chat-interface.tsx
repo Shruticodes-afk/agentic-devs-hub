@@ -78,13 +78,13 @@ export function ChatInterface() {
             <div
               className={`max-w-[85%] rounded-lg px-4 py-3 text-sm whitespace-pre-wrap ${
                 msg.role === "user"
-                  ? "bg-emerald-500/10 border border-emerald-500/20 text-emerald-100"
+                  ? "bg-primary/10 border border-primary/20 text-primary-foreground"
                   : "bg-white/[0.03] border border-white/[0.06] text-muted-foreground font-mono leading-relaxed"
               }`}
             >
               {msg.role === "model" && (
                 <div className="flex items-center gap-2 mb-1.5 opacity-60">
-                  <span className="text-emerald-400 font-bold">{">_"}</span>
+                  <span className="text-primary font-bold">{">_"}</span>
                   <span className="text-xs uppercase tracking-wider">Assistant</span>
                 </div>
               )}
@@ -97,10 +97,10 @@ export function ChatInterface() {
           <div className="flex justify-start">
             <div className="max-w-[85%] rounded-lg px-4 py-3 text-sm bg-white/[0.03] border border-white/[0.06] text-muted-foreground font-mono">
               <div className="flex items-center gap-2 mb-1.5 opacity-60">
-                <span className="text-emerald-400 font-bold">{">_"}</span>
+                <span className="text-primary font-bold">{">_"}</span>
                 <span className="text-xs uppercase tracking-wider">Assistant</span>
               </div>
-              <span className="inline-block w-2 h-4 bg-emerald-500 animate-pulse"></span>
+              <span className="inline-block w-2 h-4 bg-primary animate-pulse"></span>
             </div>
           </div>
         )}
@@ -114,13 +114,13 @@ export function ChatInterface() {
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
             placeholder="Ask about events, chapters, or the collective..."
-            className="flex-1 bg-white/[0.03] border-white/[0.08] focus:border-emerald-500/50 focus:ring-emerald-500/20"
+            className="flex-1 bg-white/[0.03] border-white/[0.08] focus:border-primary/50 focus:ring-primary/20"
             disabled={isLoading}
           />
           <Button
             type="submit"
             disabled={isLoading || !inputValue.trim()}
-            className="bg-emerald-500 text-black font-semibold hover:bg-emerald-400 transition-colors duration-200 px-6"
+            className="bg-primary text-black font-semibold hover:bg-primary transition-colors duration-200 px-6"
           >
             Send
           </Button>

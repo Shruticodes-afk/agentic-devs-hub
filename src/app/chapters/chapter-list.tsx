@@ -35,7 +35,7 @@ export function ChapterList({ initialChapters }: { initialChapters: Chapter[] })
           placeholder="Search by city..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          className="pl-10 bg-white/[0.03] border-white/[0.08] focus:border-emerald-500/50 focus:ring-emerald-500/20"
+          className="pl-10 bg-white/[0.03] border-white/[0.08] focus:border-primary/50 focus:ring-primary/20"
         />
       </div>
 
@@ -44,11 +44,11 @@ export function ChapterList({ initialChapters }: { initialChapters: Chapter[] })
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredChapters.map((chapter) => (
             <Link key={chapter.id} href={`/chapters/${chapter.id}`}>
-              <Card className="h-full border-white/[0.08] bg-card hover:border-emerald-500/30 hover:bg-white/[0.02] transition-all duration-300 group cursor-pointer shadow-xl shadow-black/20">
+              <Card className="h-full border-white/[0.08] bg-card hover:border-primary/30 hover:bg-white/[0.02] transition-all duration-300 group cursor-pointer shadow-xl shadow-black/20">
                 <CardHeader className="pb-3">
                   <div className="flex items-start justify-between">
                     <div>
-                      <CardTitle className="text-xl font-mono text-emerald-400 group-hover:text-emerald-300 transition-colors">
+                      <CardTitle className="text-xl font-mono text-primary group-hover:text-primary/90 transition-colors">
                         {chapter.city}
                       </CardTitle>
                       <p className="text-sm text-muted-foreground mt-1">{chapter.country}</p>
@@ -56,7 +56,7 @@ export function ChapterList({ initialChapters }: { initialChapters: Chapter[] })
                     <span
                       className={`text-[10px] font-mono uppercase px-2 py-1 rounded-sm border ${
                         chapter.status === "active"
-                          ? "bg-emerald-500/10 border-emerald-500/20 text-emerald-400"
+                          ? "bg-primary/10 border-primary/20 text-primary"
                           : "bg-blue-500/10 border-blue-500/20 text-blue-400"
                       }`}
                     >

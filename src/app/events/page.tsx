@@ -16,7 +16,7 @@ export default async function EventsPage() {
   // Fetch all upcoming events (or all events for now, sorted by date)
   const { data: events, error } = await supabase
     .from("events")
-    .select("*, event_registrations(count)")
+    .select("*")
     .order("event_date", { ascending: true });
 
   if (error) {
@@ -39,7 +39,7 @@ export default async function EventsPage() {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const initialEvents: EventRow[] = (events || []).map((e: any) => ({
     ...e,
-    registered_count: e.event_registrations?.[0]?.count || 0,
+    registered_count: e.registered_count || 0,
   } as EventRow));
 
   return (
@@ -50,8 +50,8 @@ export default async function EventsPage() {
       <div className="relative z-10 max-w-7xl mx-auto space-y-8">
         {/* Header */}
         <div>
-          <h1 className="text-3xl font-mono font-bold text-foreground">
-            <span className="text-emerald-400">~/</span>events
+          <h1 className="text-3xl font-sans font-bold text-foreground">
+            <span className="text-primary">~/</span>events
           </h1>
           <p className="text-muted-foreground text-sm mt-2 max-w-xl">
             Register for upcoming hackathons, workshops, and chapter meetups. Space is limited for some events.

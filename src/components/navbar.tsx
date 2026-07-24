@@ -47,7 +47,7 @@ export function Navbar() {
         <div className="flex h-14 items-center justify-between">
           {/* Logo — terminal style */}
           <Link href="/" className="flex items-center gap-1.5 group">
-            <span className="font-mono text-emerald-400 text-lg font-bold transition-opacity group-hover:opacity-80">
+            <span className="font-mono text-primary text-lg font-bold transition-opacity group-hover:opacity-80">
               {">_"}
             </span>
             <span className="font-mono text-sm text-foreground/90 hidden sm:inline">
@@ -71,7 +71,7 @@ export function Navbar() {
                 >
                   {link.label}
                   {isActive && (
-                    <span className="absolute bottom-0 left-3 right-3 h-px bg-emerald-400" />
+                    <span className="absolute bottom-0 left-3 right-3 h-px bg-primary" />
                   )}
                 </Link>
               );
@@ -82,10 +82,10 @@ export function Navbar() {
           <div className="hidden md:flex items-center gap-2">
             {user ? (
               <div className="flex items-center gap-3">
-                <span className="text-sm text-muted-foreground font-mono">
+                <span className="text-sm text-muted-foreground font-sans">
                   {user.user_metadata?.full_name || user.email}
                 </span>
-                <div className="w-7 h-7 rounded-full border border-emerald-500/40 bg-emerald-500/10 flex items-center justify-center text-emerald-400 text-xs font-mono font-bold">
+                <div className="w-7 h-7 rounded-full border border-primary/40 bg-primary/10 flex items-center justify-center text-primary text-xs font-bold">
                   {(
                     user.user_metadata?.full_name?.[0] ||
                     user.email?.[0] ||
@@ -106,7 +106,7 @@ export function Navbar() {
                 <Button
                   size="sm"
                   render={<Link href="/signup" />}
-                  className="bg-emerald-500 text-black font-semibold hover:bg-emerald-400 text-sm"
+                  className="bg-primary text-primary-foreground font-semibold hover:bg-primary/90 text-sm"
                 >
                   Sign Up
                 </Button>
@@ -148,7 +148,7 @@ export function Navbar() {
                     onClick={() => setMobileMenuOpen(false)}
                     className={`px-3 py-2.5 rounded-md text-sm transition-colors duration-200 ${
                       isActive
-                        ? "text-emerald-400 bg-emerald-500/5"
+                        ? "text-primary bg-primary/10"
                         : "text-muted-foreground hover:text-foreground hover:bg-white/[0.03]"
                     }`}
                   >
@@ -159,14 +159,14 @@ export function Navbar() {
               <div className="mt-2 pt-2 border-t border-white/[0.06] flex flex-col gap-2">
                 {user ? (
                   <div className="px-3 py-2 flex items-center gap-3">
-                    <div className="w-7 h-7 rounded-full border border-emerald-500/40 bg-emerald-500/10 flex items-center justify-center text-emerald-400 text-xs font-mono font-bold">
+                    <div className="w-7 h-7 rounded-full border border-primary/40 bg-primary/10 flex items-center justify-center text-primary text-xs font-bold">
                       {(
                         user.user_metadata?.full_name?.[0] ||
                         user.email?.[0] ||
                         "U"
                       ).toUpperCase()}
                     </div>
-                    <span className="text-sm text-muted-foreground font-mono">
+                    <span className="text-sm text-muted-foreground font-sans">
                       {user.user_metadata?.full_name || user.email}
                     </span>
                   </div>
@@ -178,7 +178,7 @@ export function Navbar() {
                     <Button
                       size="sm"
                       render={<Link href="/signup" />}
-                      className="bg-emerald-500 text-black font-semibold hover:bg-emerald-400"
+                      className="bg-primary text-primary-foreground font-semibold hover:bg-primary/90"
                     >
                       Sign Up
                     </Button>

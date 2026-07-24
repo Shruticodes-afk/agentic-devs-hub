@@ -6,8 +6,8 @@ export default function HomePage() {
     <div className="min-h-screen relative overflow-hidden">
       {/* Dot grid background */}
       <div className="absolute inset-0 dot-grid pointer-events-none" />
-      {/* Subtle emerald glow — bottom-left corner */}
-      <div className="absolute -bottom-32 -left-32 w-96 h-96 bg-emerald-500/[0.07] rounded-full blur-[120px] pointer-events-none" />
+      {/* Subtle primary glow — bottom-left corner */}
+      <div className="absolute -bottom-32 -left-32 w-96 h-96 bg-primary/10 rounded-full blur-[120px] pointer-events-none" />
 
       {/* Hero Section — asymmetric split */}
       <main className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 min-h-[calc(100vh-4rem)] flex items-center">
@@ -17,16 +17,16 @@ export default function HomePage() {
             {/* Badge */}
             <div className="inline-flex items-center gap-2 rounded-full border border-white/[0.08] bg-white/[0.03] px-4 py-1.5 text-sm text-muted-foreground">
               <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-primary" />
               </span>
               Building the future of developer communities
             </div>
 
             {/* Heading */}
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1]">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] font-sans">
               <span className="text-foreground">The Hub for </span>
-              <span className="font-mono text-emerald-400">
+              <span className="text-primary">
                 Agentic Developers
               </span>
             </h1>
@@ -42,7 +42,7 @@ export default function HomePage() {
               <Button
                 size="lg"
                 render={<Link href="/signup" />}
-                className="bg-emerald-500 text-black font-semibold hover:bg-emerald-400 transition-colors duration-200 px-8 text-base"
+                className="bg-primary text-primary-foreground font-semibold hover:bg-primary/90 transition-colors duration-200 px-8 text-base"
               >
                 Get Started
               </Button>
@@ -66,7 +66,7 @@ export default function HomePage() {
               ].map((feature) => (
                 <div
                   key={feature.label}
-                  className="flex items-center gap-2 rounded-md border border-white/[0.06] bg-white/[0.02] px-3 py-1.5 text-sm text-muted-foreground hover:border-emerald-500/30 transition-colors duration-300"
+                  className="flex items-center gap-2 rounded-md border border-white/[0.06] bg-white/[0.02] px-3 py-1.5 text-sm text-muted-foreground hover:border-primary/30 transition-colors duration-300"
                 >
                   <span>{feature.icon}</span>
                   <span>{feature.label}</span>
@@ -92,9 +92,9 @@ export default function HomePage() {
               {/* Terminal content */}
               <div className="p-5 font-mono text-sm leading-relaxed space-y-3">
                 <div>
-                  <span className="text-emerald-400">$</span>
+                  <span className="text-primary">$</span>
                   <span className="text-muted-foreground"> agent init</span>
-                  <span className="text-emerald-400"> --collective</span>
+                  <span className="text-primary"> --collective</span>
                 </div>
                 <div className="text-muted-foreground/70 text-xs leading-relaxed">
                   <p>✓ Connected to local chapter</p>
@@ -102,11 +102,11 @@ export default function HomePage() {
                   <p>✓ AI assistant ready</p>
                 </div>
                 <div className="pt-1 border-t border-white/[0.04]">
-                  <span className="text-emerald-400">$</span>
+                  <span className="text-primary">$</span>
                   <span className="text-muted-foreground"> agent status</span>
                 </div>
-                <div className="rounded-md bg-emerald-500/5 border border-emerald-500/10 px-3 py-2">
-                  <p className="text-emerald-400 text-xs">
+                <div className="rounded-md bg-primary/10 border border-primary/20 px-3 py-2">
+                  <p className="text-primary text-xs">
                     ● online — 3 agents active
                   </p>
                   <p className="text-muted-foreground/60 text-xs mt-1">
@@ -114,7 +114,7 @@ export default function HomePage() {
                   </p>
                 </div>
                 <div>
-                  <span className="text-emerald-400">$</span>
+                  <span className="text-primary">$</span>
                   <span className="text-muted-foreground animate-pulse">
                     {" "}
                     ▌
