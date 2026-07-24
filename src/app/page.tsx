@@ -126,7 +126,12 @@ export default function HomePage() {
               <div>
                 <div className="flex gap-1 mb-4">
                   {[...Array(5)].map((_, j) => (
-                    <Star key={j} className={`w-4 h-4 ${j < t.rating ? 'fill-primary text-primary' : 'text-primary/30'}`} />
+                    <Star 
+                      key={j} 
+                      className="w-4 h-4" 
+                      fill={j < t.rating ? "#FBBF24" : "none"}
+                      stroke={j < t.rating ? "#FBBF24" : "#4B5563"}
+                    />
                   ))}
                 </div>
                 <p className="text-white/80 leading-relaxed mb-8">{t.quote}</p>
