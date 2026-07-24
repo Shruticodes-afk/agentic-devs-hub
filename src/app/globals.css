@@ -75,9 +75,11 @@
 /* Orbital Diagram Animations */
 @utility animate-spin-slow {
   animation: spin-slow 40s linear infinite;
+  will-change: transform;
 }
 @utility animate-spin-slow-reverse {
   animation: spin-slow-reverse 40s linear infinite;
+  will-change: transform;
 }
 
 @keyframes spin-slow {
