@@ -1,4 +1,5 @@
-import { createClient } from "@/lib/supabase/server";
+import { createClient as createSupabaseClient } from "@supabase/supabase-js";
+import { unstable_cache } from "next/cache";
 import { ChapterList, type Chapter } from "./chapter-list";
 
 export const metadata = {
@@ -6,21 +7,29 @@ export const metadata = {
   description: "Find and join a local chapter of the Agentic Devs Collective.",
 };
 
+const getCachedChapters = unstable_cache(
+  async () => {
+    const supabase = createSupabaseClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+    );
+    const { data: chapters, error } = await supabase
+      .from("chapters")
+      .select("*")
+      .order("member_count", { ascending: false });
+
+    if (error) {
+      console.error("Error fetching chapters:", error);
+      return [];
+    }
+    return chapters as Chapter[];
+  },
+  ["chapters-list"],
+  { revalidate: 3600 }
+);
+
 export default async function ChaptersPage() {
-  const supabase = await createClient();
-
-  // Fetch chapters, ordered by member count
-  const { data: chapters, error } = await supabase
-    .from("chapters")
-    .select("*")
-    .order("member_count", { ascending: false });
-
-  if (error) {
-    console.error("Error fetching chapters:", error);
-  }
-
-  // Fallback to empty array if there's an error or no data
-  const initialChapters: Chapter[] = chapters || [];
+  const initialChapters = await getCachedChapters();
 
   return (
     <div className="min-h-screen relative overflow-hidden p-6 md:p-10">

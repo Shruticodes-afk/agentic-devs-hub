@@ -1,4 +1,6 @@
-import { createClient } from "@/lib/supabase/server";
+import { createClient as createSupabaseClient } from "@supabase/supabase-js";
+import { createClient as createServerClient } from "@/lib/supabase/server";
+import { unstable_cache } from "next/cache";
 import { EventList, type EventRow } from "./event-list";
 
 export const metadata = {
@@ -6,27 +8,46 @@ export const metadata = {
   description: "Upcoming events, hackathons, and workshops.",
 };
 
+const getCachedEvents = unstable_cache(
+  async () => {
+    const supabase = createSupabaseClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+    );
+    const { data: events, error } = await supabase
+      .from("events")
+      .select("*")
+      .order("event_date", { ascending: true });
+
+    if (error) {
+      console.error("Error fetching events:", error);
+      return [];
+    }
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    return (events || []).map((e: any) => ({
+      ...e,
+      registered_count: e.registered_count || 0,
+    } as EventRow));
+  },
+  ["events-list"],
+  { revalidate: 3600 }
+);
+
 export default async function EventsPage() {
-  const supabase = await createClient();
+  const supabaseServer = await createServerClient();
 
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
+  // Parallelize the user fetch and the events fetch
+  const [userResult, initialEvents] = await Promise.all([
+    supabaseServer.auth.getUser(),
+    getCachedEvents(),
+  ]);
 
-  // Fetch all upcoming events (or all events for now, sorted by date)
-  const { data: events, error } = await supabase
-    .from("events")
-    .select("*")
-    .order("event_date", { ascending: true });
-
-  if (error) {
-    console.error("Error fetching events:", error);
-  }
+  const user = userResult.data?.user;
 
   // Fetch the current user's registrations if they are logged in
   let registeredEventIds: string[] = [];
   if (user) {
-    const { data: registrations, error: regError } = await supabase
+    const { data: registrations, error: regError } = await supabaseServer
       .from("event_registrations")
       .select("event_id")
       .eq("member_id", user.id);
@@ -35,12 +56,6 @@ export default async function EventsPage() {
       registeredEventIds = registrations.map((r) => r.event_id);
     }
   }
-
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const initialEvents: EventRow[] = (events || []).map((e: any) => ({
-    ...e,
-    registered_count: e.registered_count || 0,
-  } as EventRow));
 
   return (
     <div className="min-h-screen relative overflow-hidden p-6 md:p-10">
