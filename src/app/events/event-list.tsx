@@ -150,8 +150,7 @@ function EventCard({
         {!isLoggedIn ? (
           <Button
             onClick={() => router.push("/login")}
-            variant="outline"
-            className="w-full border-white/[0.08] hover:bg-white/[0.04] text-muted-foreground"
+            className="w-full bg-white text-black font-semibold hover:bg-gray-200 transition-colors duration-200 opacity-100"
           >
             Sign in to register
           </Button>
@@ -175,7 +174,7 @@ function EventCard({
           <Button
             onClick={handleRegister}
             disabled={isPending}
-            className="w-full bg-primary text-black font-semibold hover:bg-primary transition-colors duration-200"
+            className="w-full bg-white text-black font-semibold hover:bg-gray-200 transition-colors duration-200 opacity-100 disabled:opacity-50"
           >
             {isPending ? "Registering..." : "Register"}
           </Button>
