@@ -13,7 +13,7 @@ export function OrbitalDiagram() {
   };
 
   return (
-    <div className="relative w-[300px] h-[300px] sm:w-[400px] sm:h-[400px] md:w-[500px] md:h-[500px] flex items-center justify-center mx-auto opacity-80 hover:opacity-100 transition-opacity duration-700">
+    <div className="relative w-[450px] h-[450px] sm:w-[600px] sm:h-[600px] md:w-[750px] md:h-[750px] flex items-center justify-center mx-auto opacity-20 pointer-events-none">
       
       {/* Outer Ring */}
       <div className="absolute inset-0 border border-white/10 rounded-full animate-spin-slow">
@@ -40,7 +40,7 @@ export function OrbitalDiagram() {
       {/* Inner Ring */}
       {/* Give inner ring a slightly reversed or faster spin */}
       <div 
-        className="absolute inset-[60px] sm:inset-[80px] md:inset-[100px] border border-white/10 rounded-full animate-spin-slow"
+        className="absolute inset-[90px] sm:inset-[120px] md:inset-[150px] border border-white/10 rounded-full animate-spin-slow"
         style={{ animationDirection: "reverse", animationDuration: "30s" }}
       >
         {innerAvatars.map((avatar, i) => {
