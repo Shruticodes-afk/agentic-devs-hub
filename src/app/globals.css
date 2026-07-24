@@ -71,3 +71,21 @@
 ::-webkit-scrollbar-thumb:hover {
   background: oklch(0.35 0 0);
 }
+
+/* Orbital Diagram Animations */
+@utility animate-spin-slow {
+  animation: spin-slow 40s linear infinite;
+}
+@utility animate-spin-slow-reverse {
+  animation: spin-slow-reverse 40s linear infinite;
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes spin-slow-reverse {
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0deg); }
+}
