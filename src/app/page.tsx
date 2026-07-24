@@ -83,50 +83,6 @@ export default function HomePage() {
         </div>
       </main>
 
-      {/* Terminal Demo Section */}
-      <section className="relative z-10 w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-32 pt-16 flex justify-center">
-        <div className="w-full rounded-xl border border-white/10 bg-[#121212] overflow-hidden shadow-2xl">
-          {/* Terminal title bar */}
-          <div className="flex items-center gap-2 px-4 py-3 border-b border-white/10 bg-black/40">
-            <div className="flex gap-1.5">
-              <div className="w-3 h-3 rounded-full bg-[#FF5F56]" />
-              <div className="w-3 h-3 rounded-full bg-[#FFBD2E]" />
-              <div className="w-3 h-3 rounded-full bg-[#27C93F]" />
-            </div>
-            <span className="text-xs text-white/40 ml-2 font-semibold">
-              Live Activity
-            </span>
-          </div>
-          {/* Terminal content */}
-          <div className="p-6 text-sm leading-relaxed space-y-4 text-left">
-            <div>
-              <span className="text-white font-bold">agent init</span>
-              <span className="text-white/60"> --collective</span>
-            </div>
-            <div className="text-white/80 text-xs leading-relaxed font-semibold">
-              <p>✓ Connected to local chapter</p>
-              <p>✓ Synced 42 community events</p>
-              <p>✓ AI assistant ready</p>
-            </div>
-            <div className="pt-2 border-t border-white/10">
-              <span className="text-white font-bold">agent status</span>
-            </div>
-            <div className="rounded-md bg-white/5 border border-white/10 px-4 py-3">
-              <p className="text-white font-bold text-xs">
-                ● online — 3 agents active
-              </p>
-              <p className="text-white/60 font-semibold text-xs mt-1">
-                chapter: bengaluru · members: 128
-              </p>
-            </div>
-            <div>
-              <span className="text-white animate-pulse">
-                ▌
-              </span>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* Testimonials Section */}
       <section className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 border-t border-white/5">
