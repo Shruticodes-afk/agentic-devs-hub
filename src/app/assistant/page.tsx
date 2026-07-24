@@ -15,7 +15,7 @@ export default function AssistantPage() {
         {/* Header */}
         <div>
           <h1 className="text-3xl font-bold text-foreground">
-            <span className="text-primary">~/</span>assistant
+            Assistant
           </h1>
           <p className="text-muted-foreground text-sm mt-2 max-w-xl">
             Have questions about the collective, events, or local chapters? Ask the community AI assistant.

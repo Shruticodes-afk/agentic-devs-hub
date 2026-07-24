@@ -66,7 +66,7 @@ export default async function EventsPage() {
         {/* Header */}
         <div>
           <h1 className="text-3xl font-bold text-foreground">
-            <span className="text-primary">~/</span>events
+            Events
           </h1>
           <p className="text-muted-foreground text-sm mt-2 max-w-xl">
             Register for upcoming hackathons, workshops, and chapter meetups. Space is limited for some events.

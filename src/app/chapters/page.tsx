@@ -40,7 +40,7 @@ export default async function ChaptersPage() {
         {/* Header */}
         <div>
           <h1 className="text-3xl font-bold text-foreground">
-            <span className="text-primary">~/</span>chapters
+            Chapters
           </h1>
           <p className="text-muted-foreground text-sm mt-2 max-w-xl">
             Join a local node of the collective. Attend events, collaborate on agent architectures, and build alongside peers in your city.
