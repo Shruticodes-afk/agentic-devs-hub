@@ -48,13 +48,13 @@ export function ChapterList({ initialChapters }: { initialChapters: Chapter[] })
                 <CardHeader className="pb-3">
                   <div className="flex items-start justify-between">
                     <div>
-                      <CardTitle className="text-xl font-mono text-primary group-hover:text-primary/90 transition-colors">
+                      <CardTitle className="text-xl text-primary group-hover:text-primary/90 transition-colors">
                         {chapter.city}
                       </CardTitle>
                       <p className="text-sm text-muted-foreground mt-1">{chapter.country}</p>
                     </div>
                     <span
-                      className={`text-[10px] font-mono uppercase px-2 py-1 rounded-sm border ${
+                      className={`text-[10px] uppercase px-2 py-1 rounded-sm border ${
                         chapter.status === "active"
                           ? "bg-primary/10 border-primary/20 text-primary"
                           : "bg-blue-500/10 border-blue-500/20 text-blue-400"
@@ -72,7 +72,7 @@ export function ChapterList({ initialChapters }: { initialChapters: Chapter[] })
                       <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
                       <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
                     </svg>
-                    <span className="font-mono">{chapter.member_count} members</span>
+                    <span>{chapter.member_count} members</span>
                   </div>
                 </CardContent>
               </Card>
@@ -89,7 +89,7 @@ export function ChapterList({ initialChapters }: { initialChapters: Chapter[] })
               <line x1="12" y1="16" x2="12.01" y2="16"></line>
             </svg>
           </div>
-          <h3 className="text-lg font-mono font-bold text-foreground mb-2">No chapters found</h3>
+          <h3 className="text-lg font-bold text-foreground mb-2">No chapters found</h3>
           <p className="text-sm text-muted-foreground max-w-md mx-auto">
             {initialChapters.length === 0
               ? "The collective is just starting. Run the SQL migration and add some chapters to your Supabase database!"

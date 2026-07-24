@@ -53,7 +53,7 @@ export default async function DashboardPage() {
         {/* Header */}
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-2xl font-mono font-bold text-foreground">
+            <h1 className="text-2xl font-bold text-foreground">
               Dashboard
             </h1>
             <p className="text-muted-foreground text-sm mt-1">
@@ -74,7 +74,7 @@ export default async function DashboardPage() {
         {/* Profile Card */}
         <Card className="border-white/[0.08] bg-card hover:border-primary/20 transition-colors duration-300">
           <CardHeader>
-            <CardTitle className="text-base font-mono">Your Profile</CardTitle>
+            <CardTitle className="text-base">Your Profile</CardTitle>
             <CardDescription className="text-sm">
               Your Agentic Devs Collective membership details
             </CardDescription>
@@ -95,7 +95,7 @@ export default async function DashboardPage() {
                 { label: "MEMBER_SINCE", value: memberSince },
               ].map((field) => (
                 <div key={field.label} className="space-y-1">
-                  <p className="text-xs font-mono uppercase tracking-wider text-muted-foreground">
+                  <p className="text-xs uppercase tracking-wider text-muted-foreground">
                     {field.label}
                   </p>
                   <p
@@ -161,7 +161,7 @@ export default async function DashboardPage() {
                     {stat.icon}
                   </div>
                   <div>
-                    <p className="text-xl font-mono font-bold">{stat.value}</p>
+                    <p className="text-xl font-bold">{stat.value}</p>
                     <p className="text-xs text-muted-foreground">
                       {stat.label}
                     </p>

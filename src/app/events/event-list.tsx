@@ -49,7 +49,7 @@ export function EventList({
               <line x1="3" y1="10" x2="21" y2="10"></line>
             </svg>
           </div>
-          <h3 className="text-lg font-mono font-bold text-foreground mb-2">No upcoming events</h3>
+          <h3 className="text-lg font-bold text-foreground mb-2">No upcoming events</h3>
           <p className="text-sm text-muted-foreground max-w-md mx-auto">
             The collective is currently planning the next series of events. Check back soon or run the SQL migration to add test events.
           </p>
@@ -101,10 +101,10 @@ function EventCard({
       <CardHeader className="pb-4">
         <div className="flex items-start justify-between">
           <div>
-            <span className="text-[10px] font-mono uppercase px-2 py-1 rounded-sm border bg-white/[0.03] border-white/[0.1] text-muted-foreground mb-3 inline-block">
+            <span className="text-[10px] uppercase px-2 py-1 rounded-sm border bg-white/[0.03] border-white/[0.1] text-muted-foreground mb-3 inline-block">
               {event.event_type}
             </span>
-            <CardTitle className="text-xl font-mono text-primary">
+            <CardTitle className="text-xl text-primary">
               {event.title}
             </CardTitle>
           </div>
@@ -139,7 +139,7 @@ function EventCard({
                 <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
                 <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
               </svg>
-              <span className="font-mono text-xs">
+              <span className="text-xs">
                 {localCount} / {event.capacity} registered
               </span>
             </div>
@@ -158,7 +158,7 @@ function EventCard({
           <Button
             disabled
             variant="outline"
-            className="w-full border-primary/20 bg-primary/5 text-primary opacity-100 font-mono"
+            className="w-full border-primary/20 bg-primary/5 text-primary opacity-100"
           >
             ✓ Registered
           </Button>
@@ -166,7 +166,7 @@ function EventCard({
           <Button
             disabled
             variant="outline"
-            className="w-full border-white/[0.08] text-muted-foreground font-mono opacity-50"
+            className="w-full border-white/[0.08] text-muted-foreground opacity-50"
           >
             Event Full
           </Button>

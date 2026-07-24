@@ -57,7 +57,7 @@ function LoginForm() {
           <div className="mx-auto text-primary text-2xl font-bold mb-1">
             {">_"}
           </div>
-          <CardTitle className="text-xl font-mono font-bold text-foreground">
+          <CardTitle className="text-xl font-bold text-foreground">
             Welcome back
           </CardTitle>
           <CardDescription className="text-muted-foreground text-sm">
@@ -79,7 +79,7 @@ function LoginForm() {
 
           <form action={login} className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="email" className="text-xs font-mono uppercase tracking-wider text-muted-foreground">
+              <Label htmlFor="email" className="text-xs uppercase tracking-wider text-muted-foreground">
                 Email
               </Label>
               <Input
@@ -92,7 +92,7 @@ function LoginForm() {
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="password" className="text-xs font-mono uppercase tracking-wider text-muted-foreground">
+              <Label htmlFor="password" className="text-xs uppercase tracking-wider text-muted-foreground">
                 Password
               </Label>
               <Input

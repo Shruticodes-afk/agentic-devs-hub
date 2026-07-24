@@ -34,7 +34,7 @@ export default function HomePage() {
         </div>
 
         {/* Heading */}
-        <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold font-mono tracking-tight leading-[1.1] text-white mb-6 max-w-5xl">
+        <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-[1.1] text-white mb-6 max-w-5xl">
           The Hub for <span className="text-white/80">Agentic Developers</span>
         </h1>
         

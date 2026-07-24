@@ -1,8 +1,13 @@
 import type { Metadata } from "next";
-import { JetBrains_Mono } from "next/font/google";
+import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/navbar";
 import { ScrollToTop } from "@/components/scroll-to-top";
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--next-font-sans",
+});
 
 const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
@@ -21,8 +26,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`dark ${jetbrainsMono.variable}`}>
-      <body className="font-mono antialiased">
+    <html lang="en" className={`dark ${inter.variable} ${jetbrainsMono.variable}`}>
+      <body className="font-sans antialiased">
         <ScrollToTop />
         <Navbar />
         {children}

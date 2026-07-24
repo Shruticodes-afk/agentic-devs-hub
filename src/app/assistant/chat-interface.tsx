@@ -63,7 +63,7 @@ export function ChatInterface() {
           <div className="w-3 h-3 rounded-full bg-white/10" />
           <div className="w-3 h-3 rounded-full bg-white/10" />
         </div>
-        <span className="text-xs text-muted-foreground font-mono ml-2">
+        <span className="text-xs text-muted-foreground ml-2">
           ~/agentic-devs/assistant.exe
         </span>
       </div>
@@ -79,7 +79,7 @@ export function ChatInterface() {
               className={`max-w-[85%] rounded-lg px-4 py-3 text-sm whitespace-pre-wrap ${
                 msg.role === "user"
                   ? "bg-primary/10 border border-primary/20 text-primary-foreground"
-                  : "bg-white/[0.03] border border-white/[0.06] text-muted-foreground font-mono leading-relaxed"
+                  : "bg-white/[0.03] border border-white/[0.06] text-muted-foreground leading-relaxed"
               }`}
             >
               {msg.role === "model" && (
@@ -95,7 +95,7 @@ export function ChatInterface() {
 
         {isLoading && (
           <div className="flex justify-start">
-            <div className="max-w-[85%] rounded-lg px-4 py-3 text-sm bg-white/[0.03] border border-white/[0.06] text-muted-foreground font-mono">
+            <div className="max-w-[85%] rounded-lg px-4 py-3 text-sm bg-white/[0.03] border border-white/[0.06] text-muted-foreground">
               <div className="flex items-center gap-2 mb-1.5 opacity-60">
                 <span className="text-primary font-bold">{">_"}</span>
                 <span className="text-xs uppercase tracking-wider">Assistant</span>
