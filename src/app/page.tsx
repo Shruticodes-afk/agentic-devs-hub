@@ -3,31 +3,13 @@ import { Button } from "@/components/ui/button";
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen relative overflow-hidden bg-[#0A0A0A] flex flex-col items-center justify-center pt-14">
+    <div className="min-h-screen relative overflow-x-hidden bg-[#0A0A0A] flex flex-col items-center justify-start pt-14">
       {/* Soft radial glow */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-        <div className="w-[800px] h-[800px] bg-white/[0.04] rounded-full blur-[100px]" />
+      <div className="absolute inset-0 flex items-start justify-center pt-32 pointer-events-none">
+        <div className="w-[1000px] h-[1000px] bg-white/[0.06] rounded-full blur-[120px]" />
       </div>
 
-      <main className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-32 flex flex-col items-center text-center">
-        
-        {/* Floating Pills */}
-        <div className="absolute top-10 left-4 md:top-24 md:left-20 hidden md:flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white shadow-lg backdrop-blur-md">
-           <span className="w-2 h-2 rounded-full bg-white/80" />
-           Local Chapters
-        </div>
-        <div className="absolute top-32 right-4 md:top-40 md:right-24 hidden md:flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white shadow-lg backdrop-blur-md">
-           <span className="w-2 h-2 rounded-full bg-white/80" />
-           AI Assistant
-        </div>
-        <div className="absolute bottom-10 left-10 md:bottom-32 md:left-32 hidden md:flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white shadow-lg backdrop-blur-md">
-           <span className="w-2 h-2 rounded-full bg-white/80" />
-           Community Events
-        </div>
-        <div className="absolute bottom-20 right-10 md:bottom-24 md:right-32 hidden md:flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white shadow-lg backdrop-blur-md">
-           <span className="w-2 h-2 rounded-full bg-white/80" />
-           Developer Network
-        </div>
+      <main className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full min-h-[calc(100vh-3.5rem)] py-24 flex flex-col items-center justify-center text-center">
 
         {/* Badge */}
         <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-sm text-white/80 mb-8 backdrop-blur-sm">
@@ -66,7 +48,74 @@ export default function HomePage() {
             Go to Dashboard
           </Button>
         </div>
+
+        {/* Feature pills */}
+        <div className="flex flex-wrap items-center justify-center gap-4 pt-16 relative z-20">
+          {[
+            { icon: "🏙️", label: "Local Chapters" },
+            { icon: "📅", label: "Community Events" },
+            { icon: "🤖", label: "AI Assistant" },
+            { icon: "👥", label: "Developer Network" },
+          ].map((feature) => (
+            <div
+              key={feature.label}
+              className="flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-5 py-2.5 text-sm text-white/90 shadow-lg backdrop-blur-md"
+            >
+              <span>{feature.icon}</span>
+              <span>{feature.label}</span>
+            </div>
+          ))}
+        </div>
       </main>
+
+      {/* Terminal Demo Section */}
+      <section className="relative z-10 w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-32 pt-16 flex justify-center">
+        <div className="w-full rounded-xl border border-white/10 bg-[#121212] overflow-hidden shadow-2xl">
+          {/* Terminal title bar */}
+          <div className="flex items-center gap-2 px-4 py-3 border-b border-white/10 bg-black/40">
+            <div className="flex gap-1.5">
+              <div className="w-3 h-3 rounded-full bg-white/20" />
+              <div className="w-3 h-3 rounded-full bg-white/20" />
+              <div className="w-3 h-3 rounded-full bg-white/20" />
+            </div>
+            <span className="text-xs text-white/40 font-mono ml-2 font-semibold">
+              ~/agentic-devs
+            </span>
+          </div>
+          {/* Terminal content */}
+          <div className="p-6 font-mono text-sm leading-relaxed space-y-4 text-left">
+            <div>
+              <span className="text-white/40 font-bold">$</span>
+              <span className="text-white font-bold"> agent init</span>
+              <span className="text-white/60"> --collective</span>
+            </div>
+            <div className="text-white/80 text-xs leading-relaxed font-semibold">
+              <p>✓ Connected to local chapter</p>
+              <p>✓ Synced 42 community events</p>
+              <p>✓ AI assistant ready</p>
+            </div>
+            <div className="pt-2 border-t border-white/10">
+              <span className="text-white/40 font-bold">$</span>
+              <span className="text-white font-bold"> agent status</span>
+            </div>
+            <div className="rounded-md bg-white/5 border border-white/10 px-4 py-3">
+              <p className="text-white font-bold text-xs">
+                ● online — 3 agents active
+              </p>
+              <p className="text-white/60 font-semibold text-xs mt-1">
+                chapter: bengaluru · members: 128
+              </p>
+            </div>
+            <div>
+              <span className="text-white/40 font-bold">$</span>
+              <span className="text-white animate-pulse">
+                {" "}
+                ▌
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
