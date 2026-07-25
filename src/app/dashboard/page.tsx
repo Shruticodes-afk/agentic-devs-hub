@@ -25,7 +25,7 @@ export default async function DashboardPage() {
   // Fetch the member's profile from the members table
   const { data: member } = await supabase
     .from("members")
-    .select("full_name, city, email, chapter_id, joined_at")
+    .select("full_name, city, chapter_id, joined_at")
     .eq("id", user.id)
     .single();
 
@@ -35,7 +35,7 @@ export default async function DashboardPage() {
     user.email ||
     "Member";
   const displayCity = member?.city || "Not set";
-  const displayEmail = member?.email || user.email || "—";
+  const displayEmail = user.email || "—";
   const memberSince = member?.joined_at
     ? new Date(member.joined_at).toLocaleDateString("en-GB", {
         day: "numeric",
