@@ -25,7 +25,7 @@ export default async function DashboardPage() {
   // Fetch the member's profile from the members table
   const { data: member } = await supabase
     .from("members")
-    .select("full_name, city, chapter_id, joined_at")
+    .select("full_name, city, chapter_id, joined_at, chapters(name)")
     .eq("id", user.id)
     .single();
 
@@ -122,7 +122,8 @@ export default async function DashboardPage() {
                 {
                   label: "CHAPTER",
                   value: member?.chapter_id
-                    ? member.chapter_id
+                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                    ? (member as any).chapters?.name || member.chapter_id
                     : "Not assigned yet",
                   muted: !member?.chapter_id,
                 },
