@@ -116,6 +116,7 @@ export function ChatInterface() {
             placeholder="Ask about events, chapters, or the collective..."
             className="flex-1 bg-white/[0.03] border-white/[0.08] focus:border-primary/50 focus:ring-primary/20"
             disabled={isLoading}
+            autoComplete="off"
           />
           <Button
             type="submit"
