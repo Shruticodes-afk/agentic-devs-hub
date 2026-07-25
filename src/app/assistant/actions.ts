@@ -110,9 +110,10 @@ export async function generateAssistantResponse(history: ChatMessage[], newMessa
           console.error("Failed to save chat log:", insertErr);
           insertWarning = `(Note: Failed to save to database - ${insertErr.message})`;
         }
-      } catch (e: any) {
+      } catch (e: unknown) {
+        const errorMsg = e instanceof Error ? e.message : String(e);
         console.error("Exception during chat_logs insert:", e);
-        insertWarning = `(Note: Failed to save to database - ${e.message})`;
+        insertWarning = `(Note: Failed to save to database - ${errorMsg})`;
       }
     }
 
