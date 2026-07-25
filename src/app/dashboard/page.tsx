@@ -25,7 +25,7 @@ export default async function DashboardPage() {
   // Fetch the member's profile from the members table
   const { data: member } = await supabase
     .from("members")
-    .select("full_name, city, chapter_id, joined_at, chapters(name)")
+    .select("full_name, city, chapter_id, joined_at")
     .eq("id", user.id)
     .single();
 
@@ -47,8 +47,16 @@ export default async function DashboardPage() {
   let chapterMembersCount = 0;
   let upcomingEventsCount = 0;
   let aiAssistsCount = 0;
+  let chapterName = null;
 
   if (member?.chapter_id) {
+    const { data: chapterData } = await supabase
+      .from("chapters")
+      .select("name")
+      .eq("id", member.chapter_id)
+      .single();
+    chapterName = chapterData?.name;
+
     const { count: membersCount } = await supabase
       .from("members")
       .select("*", { count: "exact", head: true })
@@ -122,8 +130,7 @@ export default async function DashboardPage() {
                 {
                   label: "CHAPTER",
                   value: member?.chapter_id
-                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                    ? (member as any).chapters?.name || member.chapter_id
+                    ? chapterName || member.chapter_id
                     : "Not assigned yet",
                   muted: !member?.chapter_id,
                 },
