@@ -45,8 +45,24 @@ export async function signup(formData: FormData) {
   // Defense-in-depth: also insert into members table from the server action.
   // The PostgreSQL trigger on auth.users will handle this atomically,
   // but this serves as a fallback in case the trigger isn't set up yet.
-  if (data.user) {
-    const { error: memberError } = await supabase
+  if (data.user && data.session) {
+    // We must use a fresh client with the explicit access token because Next.js Server Actions
+    // cookieStore.getAll() does not return the newly set cookies during the same request cycle,
+    // which causes the default ssr client to run this update as an anonymous user (failing RLS silently).
+    const { createClient: createBrowserClient } = await import("@supabase/supabase-js");
+    const authSupabase = createBrowserClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+      {
+        global: {
+          headers: {
+            Authorization: `Bearer ${data.session.access_token}`,
+          },
+        },
+      }
+    );
+
+    const { error: memberError } = await authSupabase
       .from("members")
       .update({
         full_name: fullName,
@@ -57,7 +73,6 @@ export async function signup(formData: FormData) {
 
     if (memberError) {
       console.error("Failed to create member row:", memberError.message);
-      // Don't block signup — the trigger should handle this
     }
   }
 
