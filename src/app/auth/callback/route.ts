@@ -8,11 +8,11 @@ export async function GET(request: Request) {
 
   if (code) {
     const supabase = await createClient();
-    const { error } = await supabase.auth.exchangeCodeForSession(code);
+    const { data, error } = await supabase.auth.exchangeCodeForSession(code);
 
     if (!error) {
       // Hydrate profile data from user_metadata (useful for OAuth or email confirmation flows)
-      if (data.user?.user_metadata) {
+      if (data?.user?.user_metadata) {
         const { full_name, city, chapter_id } = data.user.user_metadata;
         if (full_name || city || chapter_id) {
           await supabase.from("members").update({
