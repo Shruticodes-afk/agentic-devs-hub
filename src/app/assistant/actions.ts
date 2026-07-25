@@ -93,9 +93,57 @@ export async function generateAssistantResponse(history: ChatMessage[], newMessa
     const result = await chat.sendMessage(newMessage);
     const responseText = result.response.text();
 
+    // Fire and forget database inserts
+    const supabase = await createClient();
+    const { data: { user } } = await supabase.auth.getUser();
+    
+    if (user) {
+      // We do this concurrently to not block the response return
+      Promise.all([
+        supabase.from('chat_logs').insert({
+          user_id: user.id,
+          role: 'user',
+          message: newMessage
+        }),
+        supabase.from('chat_logs').insert({
+          user_id: user.id,
+          role: 'model',
+          message: responseText
+        })
+      ]).catch(e => console.error("Failed to save chat logs:", e));
+    }
+
     return { success: true, text: responseText };
   } catch (error: unknown) {
     console.error("Gemini API Error:", error);
     return { error: "The assistant is temporarily unavailable, please try again shortly." };
+  }
+}
+
+export async function getChatHistory(): Promise<ChatMessage[]> {
+  try {
+    const supabase = await createClient();
+    const { data: { user } } = await supabase.auth.getUser();
+    if (!user) return [];
+
+    const { data, error } = await supabase
+      .from('chat_logs')
+      .select('role, message, created_at')
+      .eq('user_id', user.id)
+      .order('created_at', { ascending: true });
+
+    if (error) {
+      console.error("Failed to fetch chat history:", error);
+      return [];
+    }
+
+    // Default Supabase response
+    return (data || []).map((row) => ({
+      role: row.role as "user" | "model",
+      text: row.message as string,
+    }));
+  } catch (err) {
+    console.error("Failed to fetch chat history:", err);
+    return [];
   }
 }

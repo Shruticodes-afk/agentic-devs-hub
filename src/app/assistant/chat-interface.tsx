@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { generateAssistantResponse, type ChatMessage } from "./actions";
+import { generateAssistantResponse, getChatHistory, type ChatMessage } from "./actions";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
@@ -15,6 +15,17 @@ export function ChatInterface() {
   const [inputValue, setInputValue] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
+
+  // Load chat history on mount
+  useEffect(() => {
+    async function loadHistory() {
+      const history = await getChatHistory();
+      if (history.length > 0) {
+        setMessages(history);
+      }
+    }
+    loadHistory();
+  }, []);
 
   // Auto-scroll to bottom
   useEffect(() => {
