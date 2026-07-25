@@ -121,9 +121,9 @@ export default async function ChapterDetailPage({
               <Button
                 variant="outline"
                 className="border-white/[0.08] text-muted-foreground"
-                asChild
+                render={<Link href="/login" />}
               >
-                <Link href="/login">Sign in to join</Link>
+                Sign in to join
               </Button>
             ) : !isMember ? (
               <JoinChapterButton chapterId={chapter.id} />
