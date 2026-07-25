@@ -46,16 +46,14 @@ export async function signup(formData: FormData) {
   // The PostgreSQL trigger on auth.users will handle this atomically,
   // but this serves as a fallback in case the trigger isn't set up yet.
   if (data.user) {
-    const { error: memberError } = await supabase.from("members").upsert(
-      {
-        id: data.user.id,
-        email,
+    const { error: memberError } = await supabase
+      .from("members")
+      .update({
         full_name: fullName,
         city: city || null,
         chapter_id: chapterId,
-      },
-      { onConflict: "id" }
-    );
+      })
+      .eq("id", data.user.id);
 
     if (memberError) {
       console.error("Failed to create member row:", memberError.message);
