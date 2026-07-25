@@ -11,6 +11,18 @@ export async function GET(request: Request) {
     const { error } = await supabase.auth.exchangeCodeForSession(code);
 
     if (!error) {
+      // Hydrate profile data from user_metadata (useful for OAuth or email confirmation flows)
+      if (data.user?.user_metadata) {
+        const { full_name, city, chapter_id } = data.user.user_metadata;
+        if (full_name || city || chapter_id) {
+          await supabase.from("members").update({
+            full_name: full_name || undefined,
+            city: city || null,
+            chapter_id: chapter_id || null,
+          }).eq("id", data.user.id);
+        }
+      }
+
       const forwardedHost = request.headers.get("x-forwarded-host");
       const isLocalEnv = process.env.NODE_ENV === "development";
 

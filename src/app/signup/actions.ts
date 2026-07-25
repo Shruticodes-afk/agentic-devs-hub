@@ -62,6 +62,17 @@ export async function signup(formData: FormData) {
       }
     );
 
+    const updatePayload = {
+      full_name: fullName,
+      city: city || null,
+      chapter_id: chapterId,
+    };
+    
+    console.log("=== SUPABASE UPDATE PAYLOAD ===");
+    console.log("User ID:", data.user.id);
+    console.log("Payload:", updatePayload);
+    console.log("===============================");
+
     const { error: memberError } = await authSupabase
       .from("members")
       .update({
