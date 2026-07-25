@@ -98,19 +98,17 @@ export async function generateAssistantResponse(history: ChatMessage[], newMessa
     const { data: { user } } = await supabase.auth.getUser();
     
     if (user) {
-      // We do this concurrently to not block the response return
-      Promise.all([
-        supabase.from('chat_logs').insert({
-          user_id: user.id,
-          role: 'user',
-          message: newMessage
-        }),
-        supabase.from('chat_logs').insert({
-          user_id: user.id,
-          role: 'model',
-          message: responseText
-        })
-      ]).catch(e => console.error("Failed to save chat logs:", e));
+      // Await inserts to see the exact error for debugging
+      try {
+        const { error: insertErr } = await supabase.from('chat_logs').insert({
+          member_id: user.id,
+          message: newMessage,
+          response: responseText
+        });
+        if (insertErr) console.error("Failed to save chat log:", insertErr);
+      } catch (e) {
+        console.error("Exception during chat_logs insert:", e);
+      }
     }
 
     return { success: true, text: responseText };
@@ -128,8 +126,8 @@ export async function getChatHistory(): Promise<ChatMessage[]> {
 
     const { data, error } = await supabase
       .from('chat_logs')
-      .select('role, message, created_at')
-      .eq('user_id', user.id)
+      .select('message, response, created_at')
+      .eq('member_id', user.id)
       .order('created_at', { ascending: true });
 
     if (error) {
@@ -137,11 +135,16 @@ export async function getChatHistory(): Promise<ChatMessage[]> {
       return [];
     }
 
-    // Default Supabase response
-    return (data || []).map((row) => ({
-      role: row.role as "user" | "model",
-      text: row.message as string,
-    }));
+    const history: ChatMessage[] = [];
+    (data || []).forEach((row) => {
+      if (row.message) {
+        history.push({ role: 'user', text: row.message as string });
+      }
+      if (row.response) {
+        history.push({ role: 'model', text: row.response as string });
+      }
+    });
+    return history;
   } catch (err) {
     console.error("Failed to fetch chat history:", err);
     return [];
