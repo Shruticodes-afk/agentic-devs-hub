@@ -59,7 +59,7 @@ export function ChatInterface() {
     } else if (response.text) {
       setMessages((prev) => [
         ...prev,
-        { role: "model", text: response.text },
+        { role: "model", text: response.text + (response.warning ? `\n\n${response.warning}` : "") },
       ]);
     }
     

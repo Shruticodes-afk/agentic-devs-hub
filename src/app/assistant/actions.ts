@@ -97,6 +97,7 @@ export async function generateAssistantResponse(history: ChatMessage[], newMessa
     const supabase = await createClient();
     const { data: { user } } = await supabase.auth.getUser();
     
+    let insertWarning = "";
     if (user) {
       // Await inserts to see the exact error for debugging
       try {
@@ -105,13 +106,17 @@ export async function generateAssistantResponse(history: ChatMessage[], newMessa
           message: newMessage,
           response: responseText
         });
-        if (insertErr) console.error("Failed to save chat log:", insertErr);
-      } catch (e) {
+        if (insertErr) {
+          console.error("Failed to save chat log:", insertErr);
+          insertWarning = `(Note: Failed to save to database - ${insertErr.message})`;
+        }
+      } catch (e: any) {
         console.error("Exception during chat_logs insert:", e);
+        insertWarning = `(Note: Failed to save to database - ${e.message})`;
       }
     }
 
-    return { success: true, text: responseText };
+    return { success: true, text: responseText, warning: insertWarning };
   } catch (error: unknown) {
     console.error("Gemini API Error:", error);
     return { error: "The assistant is temporarily unavailable, please try again shortly." };
