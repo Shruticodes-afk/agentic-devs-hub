@@ -3,6 +3,7 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { headers } from "next/headers";
 import { createClient } from "@/lib/supabase/server";
+import { createClient as createSupabaseClient } from "@supabase/supabase-js";
 
 const apiKey = process.env.GEMINI_API_KEY;
 const genAI = apiKey ? new GoogleGenerativeAI(apiKey) : null;
@@ -94,26 +95,36 @@ export async function generateAssistantResponse(history: ChatMessage[], newMessa
     const responseText = result.response.text();
 
     // Fire and forget database inserts
+    // Get user from the normal SSR client
     const supabase = await createClient();
     const { data: { user } } = await supabase.auth.getUser();
     
     let insertWarning = "";
     if (user) {
-      // Await inserts to see the exact error for debugging
-      try {
-        const { error: insertErr } = await supabase.from('chat_logs').insert({
-          member_id: user.id,
-          message: newMessage,
-          response: responseText
-        });
-        if (insertErr) {
-          console.error("Failed to save chat log:", insertErr);
-          insertWarning = `(Note: Failed to save to database - ${insertErr.message})`;
+      // Use service role key to bypass RLS for inserting chat logs
+      const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+      const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+      
+      if (!serviceRoleKey) {
+        insertWarning = "(Note: SUPABASE_SERVICE_ROLE_KEY is not set in environment variables. Cannot save history.)";
+      } else {
+        const supabaseAdmin = createSupabaseClient(supabaseUrl!, serviceRoleKey);
+        
+        try {
+          const { error: insertErr } = await supabaseAdmin.from('chat_logs').insert({
+            member_id: user.id,
+            message: newMessage,
+            response: responseText
+          });
+          if (insertErr) {
+            console.error("Failed to save chat log:", insertErr);
+            insertWarning = `(Note: Failed to save to database - ${insertErr.message})`;
+          }
+        } catch (e: unknown) {
+          const errorMsg = e instanceof Error ? e.message : String(e);
+          console.error("Exception during chat_logs insert:", e);
+          insertWarning = `(Note: Failed to save to database - ${errorMsg})`;
         }
-      } catch (e: unknown) {
-        const errorMsg = e instanceof Error ? e.message : String(e);
-        console.error("Exception during chat_logs insert:", e);
-        insertWarning = `(Note: Failed to save to database - ${errorMsg})`;
       }
     }
 
@@ -130,7 +141,17 @@ export async function getChatHistory(): Promise<ChatMessage[]> {
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) return [];
 
-    const { data, error } = await supabase
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+    const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+    
+    if (!serviceRoleKey) {
+      console.warn("SUPABASE_SERVICE_ROLE_KEY is not set. Cannot fetch history.");
+      return [];
+    }
+
+    const supabaseAdmin = createSupabaseClient(supabaseUrl!, serviceRoleKey);
+
+    const { data, error } = await supabaseAdmin
       .from('chat_logs')
       .select('message, response, created_at')
       .eq('member_id', user.id)
