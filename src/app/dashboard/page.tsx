@@ -52,10 +52,10 @@ export default async function DashboardPage() {
   if (member?.chapter_id) {
     const { data: chapterData } = await supabase
       .from("chapters")
-      .select("name")
+      .select("city")
       .eq("id", member.chapter_id)
       .single();
-    chapterName = chapterData?.name;
+    chapterName = chapterData?.city;
 
     const { count: membersCount } = await supabase
       .from("members")
