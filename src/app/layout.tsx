@@ -20,16 +20,21 @@ export const metadata: Metadata = {
     "Connect with your local chapter, attend AI-powered events, and build the next generation of autonomous systems — together.",
 };
 
-export default function RootLayout({
+import { createClient } from "@/lib/supabase/server";
+
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+
   return (
     <html lang="en" className={`dark ${inter.variable} ${jetbrainsMono.variable}`}>
       <body className="font-sans antialiased min-h-screen flex flex-col">
         <ScrollToTop />
-        <Navbar />
+        <Navbar initialUser={user} />
         <div className="flex-1 flex flex-col">
           {children}
         </div>
