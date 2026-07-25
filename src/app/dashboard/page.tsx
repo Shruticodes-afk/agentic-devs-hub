@@ -44,6 +44,40 @@ export default async function DashboardPage() {
       })
     : "—";
 
+  let chapterMembersCount = 0;
+  let upcomingEventsCount = 0;
+  let aiAssistsCount = 0;
+
+  if (member?.chapter_id) {
+    const { count: membersCount } = await supabase
+      .from("members")
+      .select("*", { count: "exact", head: true })
+      .eq("chapter_id", member.chapter_id);
+    chapterMembersCount = membersCount || 0;
+
+    const { count: eventsCount } = await supabase
+      .from("events")
+      .select("*", { count: "exact", head: true })
+      .eq("chapter_id", member.chapter_id)
+      .gt("event_date", new Date().toISOString());
+    upcomingEventsCount = eventsCount || 0;
+  } else if (member?.city) {
+    const { count: eventsCount } = await supabase
+      .from("events")
+      .select("*", { count: "exact", head: true })
+      .eq("location", member.city)
+      .gt("event_date", new Date().toISOString());
+    upcomingEventsCount = eventsCount || 0;
+  }
+
+  const { count: chatCount, error: chatError } = await supabase
+    .from("chat_logs")
+    .select("*", { count: "exact", head: true })
+    .eq("user_id", user.id);
+  if (!chatError) {
+    aiAssistsCount = chatCount || 0;
+  }
+
   return (
     <div className="min-h-screen relative overflow-hidden">
       {/* Dot grid background */}
@@ -118,7 +152,7 @@ export default async function DashboardPage() {
           {[
             {
               label: "Chapter Members",
-              value: "—",
+              value: chapterMembersCount.toString(),
               icon: (
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
                   <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
@@ -130,7 +164,7 @@ export default async function DashboardPage() {
             },
             {
               label: "Upcoming Events",
-              value: "—",
+              value: upcomingEventsCount.toString(),
               icon: (
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
                   <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
@@ -142,7 +176,7 @@ export default async function DashboardPage() {
             },
             {
               label: "AI Assists",
-              value: "—",
+              value: aiAssistsCount.toString(),
               icon: (
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
                   <path d="M12 20h9" />

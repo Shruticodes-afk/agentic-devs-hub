@@ -12,22 +12,6 @@ export async function signup(formData: FormData) {
   const fullName = formData.get("fullName") as string;
   const city = formData.get("city") as string;
 
-  // Sign up with Supabase Auth — full_name stored in raw_user_meta_data
-  const { data, error } = await supabase.auth.signUp({
-    email,
-    password,
-    options: {
-      data: {
-        full_name: fullName,
-      },
-      emailRedirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/auth/callback`,
-    },
-  });
-
-  if (error) {
-    redirect("/signup?error=" + encodeURIComponent(error.message));
-  }
-
   let chapterId = null;
   if (city) {
     const { data: chapterData } = await supabase
@@ -38,6 +22,24 @@ export async function signup(formData: FormData) {
     if (chapterData) {
       chapterId = chapterData.id;
     }
+  }
+
+  // Sign up with Supabase Auth — full_name, city, chapter_id stored in raw_user_meta_data
+  const { data, error } = await supabase.auth.signUp({
+    email,
+    password,
+    options: {
+      data: {
+        full_name: fullName,
+        city: city || null,
+        chapter_id: chapterId,
+      },
+      emailRedirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/auth/callback`,
+    },
+  });
+
+  if (error) {
+    redirect("/signup?error=" + encodeURIComponent(error.message));
   }
 
   // Defense-in-depth: also insert into members table from the server action.
