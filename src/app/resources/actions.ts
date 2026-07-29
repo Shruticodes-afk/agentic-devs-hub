@@ -11,6 +11,8 @@ export interface Resource {
   title: string;
   url: string;
   tags: string[];
+  summary?: string;
+  ai_tagged?: boolean;
   added_by: string;
   created_at: string;
 }
