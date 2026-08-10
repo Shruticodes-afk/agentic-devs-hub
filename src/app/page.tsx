@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { OrbitalDiagram } from "@/components/orbital-diagram";
-import { MapPin, Calendar, Bot, Network, Star } from "lucide-react";
+import { Star } from "lucide-react";
 
 export default function HomePage() {
   return (
@@ -61,24 +61,6 @@ export default function HomePage() {
           >
             Go to Dashboard
           </Button>
-        </div>
-
-        {/* Feature pills */}
-        <div className="flex flex-wrap items-center justify-center gap-4 pt-16 relative z-20">
-          {[
-            { icon: <MapPin className="w-4 h-4" />, label: "Local Chapters" },
-            { icon: <Calendar className="w-4 h-4" />, label: "Community Events" },
-            { icon: <Bot className="w-4 h-4" />, label: "AI Assistant" },
-            { icon: <Network className="w-4 h-4" />, label: "Developer Network" },
-          ].map((feature) => (
-            <div
-              key={feature.label}
-              className="flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-5 py-2.5 text-sm text-white/90 shadow-lg backdrop-blur-md"
-            >
-              <span>{feature.icon}</span>
-              <span>{feature.label}</span>
-            </div>
-          ))}
         </div>
         </div>
       </main>
