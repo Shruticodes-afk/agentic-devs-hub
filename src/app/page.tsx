@@ -25,14 +25,7 @@ export default function HomePage() {
 
         {/* Hero Content Wrapper */}
         <div className="relative z-10 flex flex-col items-center w-full">
-          {/* Badge */}
-        <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-sm text-white/80 mb-8 backdrop-blur-sm">
-          <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75" />
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-white" />
-          </span>
-          Building the future of developer communities
-        </div>
+
 
         {/* Heading */}
         <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-[1.1] text-white mb-6 max-w-5xl">
